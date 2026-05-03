@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Use — Phantom Privilege</title>
+<meta name="description" content="End User License Agreement for Phantom Privilege, a cybersecurity educational experience by The PAM Insider.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #3D1A6E;
+    --green: #39FF14;
+    --black: #0D0D0D;
+    --white: #FFFFFF;
+    --grey: #888888;
+    --amber: #F5A623;
+    --green-dim: rgba(57,255,20,0.12);
+    --green-glow: rgba(57,255,20,0.4);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 998;
+  }
+
+  .corner-tl, .corner-br {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .corner-tl {
+    top: 16px; left: 16px;
+    border-top: 1px solid rgba(57,255,20,0.3);
+    border-left: 1px solid rgba(57,255,20,0.3);
+  }
+  .corner-br {
+    bottom: 16px; right: 16px;
+    border-bottom: 1px solid rgba(57,255,20,0.3);
+    border-right: 1px solid rgba(57,255,20,0.3);
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 10;
+  }
+
+  header {
+    padding: 32px 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tpi-logo {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .tpi-logo:hover { color: var(--green); }
+
+  .back-link {
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--green); }
+
+  .doc-header {
+    margin-bottom: 48px;
+  }
+
+  .doc-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .doc-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(32px, 8vw, 52px);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .doc-date {
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.15em;
+  }
+
+  .divider {
+    width: 100%;
+    height: 0.5px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+    margin: 32px 0;
+    opacity: 0.4;
+  }
+
+  .warning-block {
+    border: 0.5px solid rgba(245,166,35,0.4);
+    padding: 24px 28px;
+    margin-bottom: 48px;
+    position: relative;
+    background: rgba(245,166,35,0.05);
+  }
+  .warning-block::before {
+    content: 'READ BEFORE PROCEEDING';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    background: var(--black);
+    padding: 0 8px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--amber);
+  }
+  .warning-block p {
+    font-size: 13px;
+    line-height: 2;
+    color: rgba(245,166,35,0.9);
+  }
+
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid rgba(57,255,20,0.2);
+  }
+
+  .section p {
+    font-size: 13px;
+    line-height: 2;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 12px;
+  }
+
+  .section ul {
+    list-style: none;
+    margin-bottom: 12px;
+  }
+
+  .section ul li {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.7);
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+
+  .section ul li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    opacity: 0.6;
+  }
+
+  .subsection-title {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+
+  .tier-block {
+    border: 0.5px solid rgba(57,255,20,0.15);
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .tier-name {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .tier-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .caps-block {
+    border: 0.5px solid rgba(255,255,255,0.1);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .caps-block p {
+    font-size: 12px;
+    line-height: 2;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  .contact-block {
+    border: 0.5px solid rgba(57,255,20,0.2);
+    padding: 24px 28px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .contact-block p {
+    font-size: 13px;
+    line-height: 2;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .contact-block a {
+    color: var(--green);
+    text-decoration: none;
+  }
+  .contact-block a:hover { text-decoration: underline; }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-left {
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.15em;
+  }
+
+  .footer-right {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-link {
+    font-size: 11px;
+    color: var(--grey);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--green); }
+
+  @media (max-width: 480px) {
+    footer { flex-direction: column; text-align: center; }
+    .footer-right { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="corner-tl"></div>
+<div class="corner-br"></div>
+
+<div class="container">
+
+  <header>
+    <a href="https://thepaminsider.com" class="tpi-logo">The PAM Insider</a>
+    <a href="https://thepaminsider.com/phantom-privilege" class="back-link">‹ Phantom Privilege</a>
+  </header>
+
+  <div class="doc-header">
+    <p class="doc-label">Legal Document</p>
+    <h1 class="doc-title">Terms of Use</h1>
+    <p class="doc-date">Effective Date: May 3, 2026</p>
+  </div>
+
+  <div class="warning-block">
+    <p>By installing, accessing, or using Phantom Privilege, you agree to be bound by these terms. If you do not agree, do not install or use the software.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <h2 class="section-title">1. Parties and Definitions</h2>
+    <p>"The PAM Insider" (also "we," "us," or "our") refers to the publisher of Phantom Privilege, operating at thepaminsider.com and thepaminsider@gmail.com.</p>
+    <p>"You" or "Licensee" refers to the individual or organization that has installed, accessed, or purchased a license to use Phantom Privilege.</p>
+    <p>"Software" refers to Phantom Privilege, including all content, code, updates, and associated materials delivered through applicable app store platforms or direct license.</p>
+    <p>"Head-to-Head Add-On" refers to the separately purchased perpetual license enabling multiplayer functionality, which requires an active Team or Business license to activate.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">2. License Grant</h2>
+
+    <div class="tier-block">
+      <p class="tier-name">Free Tier — No charge</p>
+      <p class="tier-desc">Access to the Small Bio Firm profile only. Solo play. Full randomized event pool. Phantom Privilege scenario does not fire on the free tier. No license purchase required.</p>
+    </div>
+
+    <div class="tier-block">
+      <p class="tier-name">Individual Unlock — $7.99 (Perpetual)</p>
+      <p class="tier-desc">Non-exclusive, non-transferable, perpetual license for personal use. Unlocks full solo play across all profiles (Small Bio Firm, Mid Retailer, Large Logistics). Defender or Attacker role selectable each game. Phantom Privilege fires normally.</p>
+    </div>
+
+    <div class="tier-block">
+      <p class="tier-name">Team License — $250.00 (Perpetual)</p>
+      <p class="tier-desc">Grants up to 50 named users within a single organization the right to install and use the Software for internal training and educational purposes.</p>
+    </div>
+
+    <div class="tier-block">
+      <p class="tier-name">Business License — $450.00 (Perpetual)</p>
+      <p class="tier-desc">Grants up to 100 named users within a single organization the right to install and use the Software for internal training and educational purposes.</p>
+    </div>
+
+    <div class="tier-block">
+      <p class="tier-name">Head-to-Head Add-On — $999.99 (Perpetual)</p>
+      <p class="tier-desc">Available exclusively to organizations holding a valid and active Team or Business license. Unlocks head-to-head multiplayer functionality for all license holders within the organization. Does not function without an accompanying valid Team or Business license.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">3. License Restrictions</h2>
+    <p>You may not:</p>
+    <ul>
+      <li>Sublicense, sell, resell, transfer, assign, or otherwise commercially exploit the Software</li>
+      <li>Reverse engineer, decompile, disassemble, or attempt to derive the source code</li>
+      <li>Remove or alter any proprietary notices or marks on the Software</li>
+      <li>Use the Software to develop a competing product or service</li>
+      <li>Share or distribute license codes to individuals outside your licensed user count</li>
+      <li>Use the Software in any manner that violates applicable law or regulation</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">4. Updates and Entitlement</h2>
+    <p>All license tiers, including perpetual licenses, are entitled to receive updates and new versions of the Software as made available through the applicable App Store platform. The PAM Insider makes no guarantee of the frequency, scope, or availability of future updates. Updates are delivered at our sole discretion and may add, modify, or remove features.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">5. Payment and Refunds</h2>
+
+    <p class="subsection-title">5.1 Individual Purchases via App Store</p>
+    <p>Purchases made through Google Play or Apple App Store are subject to the refund policies of those platforms. The PAM Insider does not control App Store refund decisions. App Store policies supersede this section for purchases made through those platforms.</p>
+
+    <p class="subsection-title">5.2 Direct License Purchases</p>
+    <p>All direct license purchases (Team, Business, Head-to-Head Add-On) are final. Refunds will not be issued after 30 days from the date of purchase. Refund requests within 30 days must be submitted in writing to thepaminsider@gmail.com and are subject to review at The PAM Insider's sole discretion.</p>
+
+    <p class="subsection-title">5.3 No Chargebacks</p>
+    <p>You agree not to initiate a chargeback or payment reversal for any purchase covered by this Agreement without first contacting The PAM Insider and allowing 30 days for resolution.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">6. Privacy</h2>
+    <p>Your use of the Software is governed by The PAM Insider Privacy Policy, available at thepaminsider.com/phantom-privilege/privacy. By using the Software, you consent to the collection and use of data as described in the Privacy Policy. The PAM Insider does not retain your in-game security stack decisions or organizational strategies — even in simulation.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">7. Intellectual Property</h2>
+    <p>The Software, including all content, scenario design, fictional vendor names, game mechanics, visual design, and associated materials, is the exclusive intellectual property of The PAM Insider. The fictional vendor ecosystem within Phantom Privilege (including VaultCore Systems, IronGate Systems, ThreatPulse, and all associated fictional product names) is original creative work and may not be reproduced or used outside the Software without written permission. All rights not expressly granted in this Agreement are reserved.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">8. Disclaimer of Warranties</h2>
+    <div class="caps-block">
+      <p>THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE PAM INSIDER DISCLAIMS ALL WARRANTIES INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. THE PAM INSIDER DOES NOT WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE, UNINTERRUPTED, OR FREE OF SECURITY VULNERABILITIES.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">9. Limitation of Liability</h2>
+    <div class="caps-block">
+      <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE PAM INSIDER BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO YOUR USE OF THE SOFTWARE. THE PAM INSIDER'S TOTAL CUMULATIVE LIABILITY FOR ALL CLAIMS ARISING UNDER THIS AGREEMENT SHALL NOT EXCEED THE AMOUNT YOU PAID FOR YOUR LICENSE IN THE TWELVE MONTHS PRECEDING THE CLAIM.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">10. Termination</h2>
+    <p>This Agreement is effective until terminated. Your rights will terminate automatically and without notice if you fail to comply with any term of this Agreement. Upon termination, you must cease all use of the Software and delete all copies in your possession. Termination does not entitle you to a refund. Sections 7, 8, 9, 11, and 12 survive termination.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">11. Governing Law</h2>
+    <p>This Agreement shall be governed by and construed in accordance with the laws of the State of Oregon, United States, without regard to its conflict of law provisions. Any dispute arising under this Agreement shall first be subject to good-faith negotiation. If unresolved after 30 days, disputes shall be submitted to binding arbitration in accordance with the rules of the American Arbitration Association, conducted in English. Either party may seek injunctive or equitable relief in a court of competent jurisdiction to protect intellectual property rights.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">12. General</h2>
+    <p>This Agreement constitutes the entire agreement between you and The PAM Insider with respect to the Software and supersedes all prior agreements. If any provision is found unenforceable, the remaining provisions remain in full force. This Agreement may not be modified except in writing signed by an authorized representative of The PAM Insider.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">13. Contact</h2>
+    <div class="contact-block">
+      <p>Questions regarding this Agreement or to submit a refund request:<br>
+      <a href="mailto:thepaminsider@gmail.com">thepaminsider@gmail.com</a><br>
+      <a href="https://thepaminsider.com">thepaminsider.com</a></p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <footer>
+    <div class="footer-left">© The PAM Insider — All rights reserved</div>
+    <div class="footer-right">
+      <a href="https://thepaminsider.com/phantom-privilege" class="footer-link">Phantom Privilege</a>
+      <a href="https://thepaminsider.com/phantom-privilege/privacy" class="footer-link">Privacy Policy</a>
+      <a href="mailto:thepaminsider@gmail.com" class="footer-link">Contact</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
