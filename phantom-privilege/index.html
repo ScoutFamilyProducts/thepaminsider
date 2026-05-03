@@ -632,17 +632,17 @@ function handleSubmit() {
   // Submit to your email collection service here
   // Options: Mailchimp, ConvertKit, a simple Railway endpoint, or Formspree
   // For now — show success immediately and log to console
-  console.log('Notify me submission:', email);
+  // console.log('Notify me submission:', email);
 
   document.getElementById('captureForm').style.display = 'none';
   document.getElementById('successMsg').classList.add('show');
 
   // TODO: Replace with your actual email capture endpoint
-  // fetch('https://phantom-privilege-api-production.up.railway.app/notify', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ email })
-  // });
+  fetch('https://phantom-privilege-api-production.up.railway.app/notify', {
+     method: 'POST',
+     headers: { 'Content-Type': 'application/json' },
+     body: JSON.stringify({ email })
+   });
 }
 
 document.getElementById('emailInput').addEventListener('keydown', function(e) {
