@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Phantom Privilege</title>
+<meta name="description" content="Privacy Policy for Phantom Privilege, a cybersecurity educational experience by The PAM Insider.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #3D1A6E;
+    --green: #39FF14;
+    --black: #0D0D0D;
+    --white: #FFFFFF;
+    --grey: #888888;
+    --amber: #F5A623;
+    --green-dim: rgba(57,255,20,0.12);
+    --green-glow: rgba(57,255,20,0.4);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 998;
+  }
+
+  .corner-tl, .corner-br {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .corner-tl {
+    top: 16px; left: 16px;
+    border-top: 1px solid rgba(57,255,20,0.3);
+    border-left: 1px solid rgba(57,255,20,0.3);
+  }
+  .corner-br {
+    bottom: 16px; right: 16px;
+    border-bottom: 1px solid rgba(57,255,20,0.3);
+    border-right: 1px solid rgba(57,255,20,0.3);
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 10;
+  }
+
+  header {
+    padding: 32px 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tpi-logo {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .tpi-logo:hover { color: var(--green); }
+
+  .back-link {
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--green); }
+
+  .doc-header {
+    margin-bottom: 48px;
+  }
+
+  .doc-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .doc-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(32px, 8vw, 52px);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .doc-date {
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.15em;
+  }
+
+  .divider {
+    width: 100%;
+    height: 0.5px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+    margin: 32px 0;
+    opacity: 0.4;
+  }
+
+  .trust-block {
+    border: 0.5px solid rgba(57,255,20,0.3);
+    padding: 24px 28px;
+    margin-bottom: 48px;
+    position: relative;
+    background: var(--green-dim);
+  }
+  .trust-block::before {
+    content: 'CORE COMMITMENT';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    background: var(--black);
+    padding: 0 8px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--amber);
+  }
+  .trust-block p {
+    font-size: 13px;
+    line-height: 2;
+    color: var(--green);
+    opacity: 0.9;
+  }
+
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid rgba(57,255,20,0.2);
+  }
+
+  .section p {
+    font-size: 13px;
+    line-height: 2;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 12px;
+  }
+
+  .section ul {
+    list-style: none;
+    margin-bottom: 12px;
+  }
+
+  .section ul li {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.7);
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+
+  .section ul li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    opacity: 0.6;
+  }
+
+  .subsection-title {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+
+  .contact-block {
+    border: 0.5px solid rgba(57,255,20,0.2);
+    padding: 24px 28px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .contact-block p {
+    font-size: 13px;
+    line-height: 2;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .contact-block a {
+    color: var(--green);
+    text-decoration: none;
+  }
+  .contact-block a:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-left {
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.15em;
+  }
+
+  .footer-right {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-link {
+    font-size: 11px;
+    color: var(--grey);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--green); }
+
+  @media (max-width: 480px) {
+    footer { flex-direction: column; text-align: center; }
+    .footer-right { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="corner-tl"></div>
+<div class="corner-br"></div>
+
+<div class="container">
+
+  <header>
+    <a href="https://thepaminsider.com" class="tpi-logo">The PAM Insider</a>
+    <a href="https://thepaminsider.com/phantom-privilege" class="back-link">‹ Phantom Privilege</a>
+  </header>
+
+  <div class="doc-header">
+    <p class="doc-label">Legal Document</p>
+    <h1 class="doc-title">Privacy Policy</h1>
+    <p class="doc-date">Effective Date: May 3, 2026</p>
+  </div>
+
+  <div class="trust-block">
+    <p>The PAM Insider does not sell your data.<br>
+    We do not retain organizational decisions or security stack choices — even in simulation.<br>
+    What happens in your session stays on your device.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <h2 class="section-title">1. Who We Are</h2>
+    <p>The PAM Insider is the publisher of Phantom Privilege, a cybersecurity educational experience. We operate independently and can be reached at thepaminsider@gmail.com and thepaminsider.com.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">2. What We Collect and Why</h2>
+
+    <p class="subsection-title">2.1 Anonymous Device Identifier</p>
+    <p>When you first launch Phantom Privilege, the app generates a random unique identifier (UUID) stored locally on your device. This identifier is randomly generated — not derived from your name, email, or any personal information. It is used to associate anonymous usage events with a consistent device across sessions and is never transmitted to any third party. It can be reset by uninstalling and reinstalling the app.</p>
+
+    <p class="subsection-title">2.2 License Redemption Data</p>
+    <p>When you redeem a license code, we store the following on our backend server:</p>
+    <ul>
+      <li>The license code redeemed</li>
+      <li>Your anonymous device identifier</li>
+      <li>The timestamp of redemption</li>
+      <li>The game profile selected at time of redemption</li>
+    </ul>
+    <p>We do not collect your name, email address, or payment information during license redemption.</p>
+
+    <p class="subsection-title">2.3 Anonymous Usage Events</p>
+    <p>If you have redeemed a license, the app may transmit anonymous usage events to our backend. These include game completion data, scenario outcomes, whether the Phantom Privilege scenario was triggered, and certificate generation events. No personally identifiable information is included.</p>
+
+    <p class="subsection-title">2.4 Email Address (Optional)</p>
+    <p>If you voluntarily submit your email through the teaser page or any in-app notification signup, we store that address solely to notify you of product updates on launch day. One email. Nothing else. You may request removal at any time by contacting thepaminsider@gmail.com.</p>
+
+    <p class="subsection-title">2.5 Head-to-Head Session Data</p>
+    <p>If you participate in a head-to-head multiplayer session, temporary session data (room codes, tokens, turn actions, game state) is stored on our backend server. This data does not include your security stack decisions or organizational information — those exist only on your device. Session data is automatically deleted within 24 hours of room creation. The session debrief is generated entirely on your device and is never transmitted to our servers.</p>
+
+    <p class="subsection-title">2.6 What We Do Not Collect</p>
+    <ul>
+      <li>Your name, postal address, phone number, or government-issued identifier</li>
+      <li>Precise geolocation data</li>
+      <li>Contacts, photos, camera, or microphone data</li>
+      <li>Browsing history or data from other apps</li>
+      <li>Payment card or banking information</li>
+      <li>Your in-game security stack decisions, vendor selections, or organizational strategy</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">3. How We Store and Protect Your Data</h2>
+    <p>Data collected by Phantom Privilege is stored on backend servers hosted through Railway (railway.app), a cloud infrastructure provider based in the United States. All data in transit is encrypted using HTTPS/TLS. Admin-accessible endpoints are protected by secret key authentication. Persistent storage is isolated to our dedicated server volume. Room session data is automatically purged on a scheduled cleanup cycle.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">4. Data Retention</h2>
+    <ul>
+      <li>Anonymous device identifier and license redemption records: retained for the life of the license</li>
+      <li>Anonymous usage events: retained indefinitely in aggregate for product improvement</li>
+      <li>Email addresses: retained until you request removal</li>
+      <li>Head-to-head session data: automatically deleted within 24 hours of room creation</li>
+      <li>Session debrief content: never transmitted — exists only on your device</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">5. Sharing of Information</h2>
+    <p>We do not sell your information. We may share data only in these limited circumstances:</p>
+    <ul>
+      <li>With enterprise license administrators: aggregate anonymous usage reports only — no individual user data</li>
+      <li>With service providers: our backend infrastructure provider (Railway) processes data on our behalf</li>
+      <li>As required by law: if compelled by valid legal process</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">6. Children's Privacy</h2>
+    <p>Phantom Privilege is designed for professional and educational use by adults. We do not knowingly collect personal information from children under the age of 13. If you believe a child under 13 has submitted personal information, contact us at thepaminsider@gmail.com and we will promptly delete it.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">7. Your Rights</h2>
+    <p>Depending on your jurisdiction, you may have rights to know what data we hold, request correction or deletion, and opt out of email communications. Contact thepaminsider@gmail.com. We will respond within 30 days. Because most data we collect is anonymous, some requests may be limited by our technical ability to locate the relevant records.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">8. Third-Party Platforms</h2>
+    <p>Phantom Privilege is distributed through the Google Play Store and Apple App Store. Those platforms have their own privacy policies governing how they handle data related to your use of their services. We are not responsible for the privacy practices of third-party platforms.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">9. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. When we do, we will update the effective date above. Your continued use of Phantom Privilege after any update constitutes your acceptance of the revised policy.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">10. Contact</h2>
+    <div class="contact-block">
+      <p>Questions about this Privacy Policy:<br>
+      <a href="mailto:thepaminsider@gmail.com">thepaminsider@gmail.com</a><br>
+      <a href="https://thepaminsider.com">thepaminsider.com</a></p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <footer>
+    <div class="footer-left">© The PAM Insider — All rights reserved</div>
+    <div class="footer-right">
+      <a href="https://thepaminsider.com/phantom-privilege" class="footer-link">Phantom Privilege</a>
+      <a href="https://thepaminsider.com/phantom-privilege/terms" class="footer-link">Terms of Use</a>
+      <a href="mailto:thepaminsider@gmail.com" class="footer-link">Contact</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
