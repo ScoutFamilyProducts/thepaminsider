@@ -133,4 +133,502 @@
   .title {
     font-family: 'Rajdhani', sans-serif;
     font-size: clamp(48px, 10vw, 72px);
-    font-weig
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+  }
+
+  .title::before,
+  .title::after {
+    content: 'PHANTOM PRIVILEGE';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .title::before {
+    color: var(--green);
+    animation: glitch-1 4s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    opacity: 0;
+  }
+
+  .title::after {
+    color: #ff0044;
+    animation: glitch-2 4s infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    opacity: 0;
+  }
+
+  @keyframes glitch-1 {
+    0%, 90%, 100% { opacity: 0; transform: none; }
+    91% { opacity: 0.8; transform: translate(-3px, 0); }
+    92% { opacity: 0; transform: none; }
+    94% { opacity: 0.6; transform: translate(3px, 0); }
+    95% { opacity: 0; }
+  }
+
+  @keyframes glitch-2 {
+    0%, 90%, 100% { opacity: 0; transform: none; }
+    91.5% { opacity: 0.7; transform: translate(3px, 0); }
+    92.5% { opacity: 0; transform: none; }
+    94.5% { opacity: 0.5; transform: translate(-3px, 0); }
+    95.5% { opacity: 0; }
+  }
+
+  .subtitle {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 64px;
+    opacity: 0;
+    animation: fade-in 1s ease forwards 0.5s;
+  }
+
+  @keyframes fade-in {
+    to { opacity: 1; }
+  }
+
+  .manifesto {
+    margin-bottom: 72px;
+    text-align: left;
+    opacity: 0;
+    animation: fade-in 1s ease forwards 0.8s;
+  }
+
+  .manifesto-line {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 15px;
+    line-height: 2;
+    color: var(--white);
+    opacity: 0.85;
+    padding: 0;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .manifesto-line::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    opacity: 0.6;
+  }
+
+  .manifesto-line.dim {
+    color: var(--grey);
+    font-size: 13px;
+  }
+
+  .manifesto-spacer { height: 24px; }
+
+  .manifesto-line.highlight {
+    color: var(--green);
+    font-size: 16px;
+    opacity: 1;
+  }
+
+  .divider {
+    width: 100%;
+    height: 0.5px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+    margin: 48px 0;
+    opacity: 0.4;
+  }
+
+  .capture-section {
+    margin-bottom: 80px;
+    opacity: 0;
+    animation: fade-in 1s ease forwards 1.2s;
+  }
+
+  .capture-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--grey);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .capture-form {
+    display: flex;
+    gap: 0;
+    border: 0.5px solid var(--green);
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .capture-form::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--green-dim);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .capture-form:focus-within::before { opacity: 1; }
+
+  .capture-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 16px 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--white);
+    letter-spacing: 0.05em;
+  }
+
+  .capture-input::placeholder {
+    color: var(--grey);
+    opacity: 0.6;
+  }
+
+  .capture-btn {
+    background: var(--green);
+    border: none;
+    padding: 16px 24px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--black);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .capture-btn:hover { background: var(--white); }
+  .capture-btn:active { transform: scale(0.98); }
+
+  .capture-note {
+    font-size: 11px;
+    color: var(--grey);
+    text-align: center;
+    margin-top: 12px;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+  }
+
+  .capture-success {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    border: 0.5px solid var(--green);
+    background: var(--green-dim);
+  }
+
+  .capture-success.show { display: block; }
+
+  .capture-success p {
+    font-size: 13px;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    line-height: 1.8;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(57,255,20,0.15);
+    border: 0.5px solid rgba(57,255,20,0.2);
+    margin-bottom: 80px;
+    opacity: 0;
+    animation: fade-in 1s ease forwards 1.5s;
+  }
+
+  .stat-cell {
+    background: var(--black);
+    padding: 24px 16px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--green);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--grey);
+    text-transform: uppercase;
+  }
+
+  .phantom-block {
+    border: 0.5px solid rgba(57,255,20,0.3);
+    padding: 32px;
+    margin-bottom: 80px;
+    position: relative;
+    background: var(--green-dim);
+    opacity: 0;
+    animation: fade-in 1s ease forwards 1.8s;
+  }
+
+  .phantom-block::before {
+    content: 'CLASSIFIED';
+    position: absolute;
+    top: -8px;
+    left: 24px;
+    background: var(--black);
+    padding: 0 8px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--amber);
+  }
+
+  .phantom-block-text {
+    font-size: 13px;
+    line-height: 2;
+    color: var(--white);
+    opacity: 0.8;
+    margin-bottom: 16px;
+  }
+
+  .phantom-block-highlight {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--green);
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+  }
+
+  footer {
+    padding: 40px 0 48px;
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    opacity: 0;
+    animation: fade-in 1s ease forwards 2s;
+  }
+
+  .footer-left {
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.15em;
+  }
+
+  .footer-right {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-link {
+    font-size: 11px;
+    color: var(--grey);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    transition: color 0.2s;
+  }
+
+  .footer-link:hover { color: var(--green); }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: var(--green);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .corner-tl, .corner-br {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    z-index: 20;
+    pointer-events: none;
+  }
+
+  .corner-tl {
+    top: 16px; left: 16px;
+    border-top: 1px solid rgba(57,255,20,0.3);
+    border-left: 1px solid rgba(57,255,20,0.3);
+  }
+
+  .corner-br {
+    bottom: 16px; right: 16px;
+    border-bottom: 1px solid rgba(57,255,20,0.3);
+    border-right: 1px solid rgba(57,255,20,0.3);
+  }
+
+  @media (max-width: 480px) {
+    .stats-row { grid-template-columns: 1fr; }
+    .capture-form { flex-direction: column; }
+    .capture-btn { width: 100%; padding: 14px; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-right { justify-content: center; }
+    .title { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="corner-tl"></div>
+<div class="corner-br"></div>
+
+<div class="container">
+
+  <header>
+    <a href="https://thepaminsider.com" class="tpi-logo">The PAM Insider</a>
+    <div class="classified-badge">CLASSIFIED</div>
+  </header>
+
+  <main>
+    <section class="hero">
+
+      <div class="phantom-p-wrap">
+        <svg class="phantom-p-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="12" fill="#3D1A6E"/>
+          <rect x="22" y="18" width="12" height="64" fill="#39FF14"/>
+          <path d="M34 18 Q62 18 66 34 Q70 50 34 50" fill="none" stroke="#39FF14" stroke-width="12" stroke-linecap="round"/>
+          <path d="M34 18 Q62 18 66 34 Q70 50 34 50" fill="none" stroke="#39FF14" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+          <path d="M44 22 Q62 22 65 34 Q68 46 44 48" fill="none" stroke="#39FF14" stroke-width="3" stroke-linecap="round" opacity="0.25"/>
+        </svg>
+      </div>
+
+      <div class="title-wrap">
+        <h1 class="title">Phantom Privilege</h1>
+      </div>
+
+      <p class="subtitle">A cybersecurity educational experience <span class="cursor"></span></p>
+
+      <div class="manifesto">
+        <p class="manifesto-line">Not a course.</p>
+        <p class="manifesto-line">Not a certification.</p>
+        <p class="manifesto-line">Not a webinar.</p>
+        <div class="manifesto-spacer"></div>
+        <p class="manifesto-line dim">Something that has never existed before in the PAM space.</p>
+        <div class="manifesto-spacer"></div>
+        <p class="manifesto-line highlight">Feel what it costs to get PAM wrong.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="stats-row">
+        <div class="stat-cell">
+          <span class="stat-number">90+</span>
+          <span class="stat-label">decisions per session</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-number">3</span>
+          <span class="stat-label">company profiles</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-number">1 in 7</span>
+          <span class="stat-label">unwinnable</span>
+        </div>
+      </div>
+
+      <div class="phantom-block">
+        <p class="phantom-block-text">
+          One in seven sessions something happens that cannot be stopped regardless of how well you built your stack. The question is not whether you can prevent it.
+        </p>
+        <p class="phantom-block-highlight">
+          The question is who you are when you cannot.
+        </p>
+      </div>
+
+      <div class="capture-section">
+        <p class="capture-label">Be first to know when it launches</p>
+
+        <div class="capture-form" id="captureForm">
+          <input
+            type="email"
+            class="capture-input"
+            id="emailInput"
+            placeholder="your@email.com"
+            autocomplete="email"
+          />
+          <button class="capture-btn" onclick="handleSubmit()">NOTIFY ME</button>
+        </div>
+
+        <div class="capture-success" id="successMsg">
+          <p>You are on the list.<br><br>
+          One email. When it is ready. Nothing else.<br><br>
+          — The PAM Insider</p>
+        </div>
+
+        <p class="capture-note">One email on launch day. No newsletters. No spam. Ever.</p>
+      </div>
+
+      <div class="divider"></div>
+
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-left">© The PAM Insider — All rights reserved</div>
+    <div class="footer-right">
+      <a href="https://thepaminsider.com" class="footer-link">Home</a>
+      <a href="https://thepaminsider.com/phantom-privilege/registry" class="footer-link">Registry</a>
+      <a href="mailto:thepaminsider@gmail.com" class="footer-link">Contact</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+async function handleSubmit() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('emailInput').style.borderBottom = '1px solid #ff0044';
+    document.getElementById('emailInput').focus();
+    return;
+  }
+
+  try {
+    const res = await fetch('https://phantom-privilege-production.up.railway.app/notify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+
+    if (res.ok) {
+      document.getElementById('captureForm').style.display = 'none';
+      document.getElementById('successMsg').classList.add('show');
+    } else {
+      document.getElementById('emailInput').style.borderBottom = '1px solid #ff0044';
+      document.getElementById('emailInput').placeholder = 'Something went wrong. Try again.';
+    }
+  } catch (err) {
+    document.getElementById('emailInput').style.borderBottom = '1px solid #ff0044';
+    document.getElementById('emailInput').placeholder = 'Connection error. Try again.';
+  }
+}
+
+document.getElementById('emailInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') handleSubmit();
+});
+</script>
+
+</body>
+</html>
