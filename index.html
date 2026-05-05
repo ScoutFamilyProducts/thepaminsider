@@ -4,32 +4,72 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The PAM Insider — A PAM Field Guide</title>
+  <meta name="description" content="The PAM Insider is a free, private, vendor-neutral field guide for understanding Privileged Access Management concepts, risks, controls, and real-world scenarios." />
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background: #050607;
+      background:
+        radial-gradient(circle at top, rgba(157, 255, 0, 0.08), transparent 32rem),
+        radial-gradient(circle at bottom, rgba(139, 92, 246, 0.10), transparent 34rem),
+        #050607;
       color: #F8FAFC;
-      font-family: system-ui, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      overflow-x: hidden;
       padding: 2rem;
       text-align: center;
     }
+
+    main {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .logo {
       width: 100%;
       max-width: 420px;
       margin-bottom: 2rem;
+      filter: drop-shadow(0 0 22px rgba(157, 255, 0, 0.12));
     }
+
+    .eyebrow {
+      color: #9DFF00;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 4.1rem);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+      max-width: 760px;
+      margin-bottom: 1.25rem;
+    }
+
     .tagline {
       font-size: 1.1rem;
       color: #CBD5E1;
-      max-width: 480px;
+      max-width: 560px;
       line-height: 1.7;
       margin-bottom: 2.5rem;
     }
+
     .badges {
       display: flex;
       flex-wrap: wrap;
@@ -37,63 +77,125 @@
       justify-content: center;
       margin-bottom: 2.5rem;
     }
+
     .badge {
-      border: 1px solid rgba(157,255,0,0.3);
-      background: rgba(157,255,0,0.08);
+      border: 1px solid rgba(157, 255, 0, 0.3);
+      background: rgba(157, 255, 0, 0.08);
       color: #9DFF00;
-      padding: 0.55rem 1.3rem;
+      padding: 0.65rem 1.35rem;
       border-radius: 999px;
       font-size: 0.85rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.05em;
       text-decoration: none;
+      box-shadow: 0 0 24px rgba(157, 255, 0, 0.06);
     }
+
     .badge.purple {
-      border-color: rgba(139,92,246,0.4);
-      background: rgba(139,92,246,0.1);
-      color: #8B5CF6;
+      border-color: rgba(139, 92, 246, 0.45);
+      background: rgba(139, 92, 246, 0.12);
+      color: #A78BFA;
+      box-shadow: 0 0 24px rgba(139, 92, 246, 0.08);
     }
+
+    .badge:hover {
+      transform: translateY(-1px);
+      transition: transform 160ms ease, border-color 160ms ease;
+      border-color: rgba(157, 255, 0, 0.65);
+    }
+
+    .badge.purple:hover {
+      border-color: rgba(167, 139, 250, 0.75);
+    }
+
     .trust {
-      font-size: 0.75rem;
-      color: #64748B;
-      max-width: 400px;
+      font-size: 0.82rem;
+      color: #94A3B8;
+      max-width: 460px;
       line-height: 1.8;
       margin-bottom: 2rem;
     }
+
+    .divider {
+      width: 100%;
+      max-width: 360px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.25), transparent);
+      margin: 0 0 1.5rem;
+    }
+
     .contact {
       font-size: 0.8rem;
       color: #64748B;
+      line-height: 1.9;
     }
+
     .contact a {
-      color: #64748B;
+      color: #94A3B8;
       text-decoration: underline;
       text-underline-offset: 3px;
     }
+
+    .llc {
+      color: #CBD5E1;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 1.5rem;
+        justify-content: flex-start;
+        padding-top: 4rem;
+      }
+
+      .logo {
+        max-width: 320px;
+      }
+
+      .badges {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .badge {
+        width: 100%;
+      }
+    }
   </style>
 </head>
+
 <body>
+  <main>
+    <img src="pam_insider_logo.png" alt="The PAM Insider logo" class="logo" />
 
-  <img src="pam_insider_logo.png" alt="The PAM Insider logo" class="logo" />
+    <div class="eyebrow">Privileged Access Management, made practical</div>
 
-  <p class="tagline">
-    A free, private, vendor-neutral field guide for understanding PAM concepts, risks, controls, and real-world scenarios.
-  </p>
+    <h1>Security breaks where policy meets people.</h1>
 
-  <div class="badges">
-    <span class="badge">📱 App Coming Soon</span>
-    <a href="https://www.youtube.com/channel/UCDcvwggGVv0Ja4uoOpSvYnw" target="_blank" class="badge purple">▶ YouTube Channel</a>
-  </div>
+    <p class="tagline">
+      The PAM Insider is a free, private, vendor-neutral field guide for understanding PAM concepts,
+      risks, controls, and real-world privileged access scenarios.
+    </p>
 
-  <p class="trust">
-    No social. No accounts. No tracking.<br>
-    No analytics. No data collection. No paywalls.
-  </p>
+    <div class="badges">
+      <span class="badge">App Coming Soon</span>
+      <a href="https://www.youtube.com/channel/UCDcvwggGVv0Ja4uoOpSvYnw" target="_blank" rel="noopener noreferrer" class="badge purple">YouTube Channel</a>
+    </div>
 
-  <p class="contact">
-    Questions? <a href="mailto:thepaminsider@gmail.com">thepaminsider@gmail.com</a>
-    &nbsp;·&nbsp;
-    <a href="/privacy">Privacy Policy</a>
-  </p>
+    <p class="trust">
+      No social. No accounts. No tracking.<br>
+      No analytics. No data collection. No paywalls.
+    </p>
 
+    <div class="divider"></div>
+
+    <p class="contact">
+      <span class="llc">THE PAM INSIDER LLC</span><br>
+      Questions? <a href="mailto:thepaminsider@gmail.com">thepaminsider@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="/privacy">Privacy Policy</a>
+    </p>
+  </main>
 </body>
 </html>
