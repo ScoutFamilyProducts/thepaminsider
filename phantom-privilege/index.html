@@ -186,9 +186,19 @@
     letter-spacing: 0.3em;
     color: var(--green);
     text-transform: uppercase;
-    margin-bottom: 64px;
+    margin-bottom: 16px;
     opacity: 0;
     animation: fade-in 1s ease forwards 0.5s;
+  }
+
+  .project-status {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--grey);
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fade-in 1s ease forwards 0.65s;
   }
 
   @keyframes fade-in {
@@ -341,7 +351,7 @@
 
   .stats-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1px;
     background: rgba(57,255,20,0.15);
     border: 0.5px solid rgba(57,255,20,0.2);
@@ -481,7 +491,7 @@
   }
 
   @media (max-width: 480px) {
-    .stats-row { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
     .capture-form { flex-direction: column; }
     .capture-btn { width: 100%; padding: 14px; }
     footer { flex-direction: column; text-align: center; }
@@ -521,6 +531,8 @@
 
       <p class="subtitle">A cybersecurity educational experience <span class="cursor"></span></p>
 
+      <p class="project-status">Project Status: Developing. Growing. Learning...</p>
+
       <div class="manifesto">
         <p class="manifesto-line">Not a course.</p>
         <p class="manifesto-line">Not a certification.</p>
@@ -535,12 +547,16 @@
 
       <div class="stats-row">
         <div class="stat-cell">
-          <span class="stat-number">90+</span>
-          <span class="stat-label">decisions per session</span>
+          <span class="stat-number">36</span>
+          <span class="stat-label">security campaigns</span>
         </div>
         <div class="stat-cell">
           <span class="stat-number">3</span>
           <span class="stat-label">company profiles</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-number">4</span>
+          <span class="stat-label">difficulty levels</span>
         </div>
         <div class="stat-cell">
           <span class="stat-number">1 in 7</span>
@@ -586,7 +602,7 @@
   </main>
 
   <footer>
-    <div class="footer-left">© The PAM Insider — All rights reserved</div>
+    <div class="footer-left">© 2026 The PAM Insider LLC — All rights reserved</div>
     <div class="footer-right">
       <a href="https://thepaminsider.com" class="footer-link">Home</a>
       <a href="https://thepaminsider.com/phantom-privilege/registry" class="footer-link">Registry</a>
