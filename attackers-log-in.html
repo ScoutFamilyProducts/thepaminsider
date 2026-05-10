@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Attackers Don't Hack In, They Log In — The PAM Insider</title>
+  <meta name="description" content="Most breaches don't involve exotic exploits. They involve stolen credentials, unmanaged privilege, and accounts that should not have existed in the first place." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050607; color: #F8FAFC; font-family: system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; color: #9DFF00; text-transform: uppercase; }
+    .nav-back { font-size: 0.78rem; color: #64748B; transition: color 0.2s; }
+    .nav-back:hover { color: #9DFF00; }
+
+    .article-wrap { max-width: 680px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; width: 100%; flex: 1; }
+
+    .article-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .article-cat {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #9DFF00; border: 1px solid rgba(157,255,0,0.25); padding: 0.25rem 0.7rem; border-radius: 999px;
+    }
+    .article-date { font-size: 0.75rem; color: #334155; letter-spacing: 0.04em; }
+
+    .article-title {
+      font-size: 1.9rem; font-weight: 700; color: #F8FAFC;
+      line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    }
+
+    .article-intro {
+      font-size: 1rem; color: #94A3B8; line-height: 1.85;
+      border-left: 2px solid rgba(157,255,0,0.3); padding-left: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 2.5rem 0; }
+
+    .section-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #9DFF00; opacity: 0.65; margin-bottom: 0.85rem;
+    }
+
+    .section-heading {
+      font-size: 1.15rem; font-weight: 700; color: #F8FAFC; margin-bottom: 1.1rem;
+    }
+
+    p { font-size: 0.9rem; color: #94A3B8; line-height: 1.9; margin-bottom: 1.1rem; }
+
+    .bold-lead { color: #CBD5E1; font-weight: 600; }
+
+    .checklist { list-style: none; margin: 0.5rem 0 1.1rem; }
+    .checklist li {
+      font-size: 0.9rem; color: #94A3B8; line-height: 1.85;
+      padding-left: 1.25rem; position: relative; margin-bottom: 0.75rem;
+    }
+    .checklist li::before { content: '>'; position: absolute; left: 0; color: #9DFF00; opacity: 0.5; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .footer-copy { font-size: 0.7rem; color: #334155; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: #64748B; transition: color 0.2s; }
+    .footer-links a:hover { color: #9DFF00; }
+
+    @media (max-width: 600px) {
+      .article-title { font-size: 1.4rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-brand">The PAM Insider</a>
+    <a href="/articles" class="nav-back">&#8249; Articles &amp; Thoughts</a>
+  </nav>
+
+  <div class="article-wrap">
+
+    <div class="article-meta">
+      <span class="article-cat">Field Lessons</span>
+      <span class="article-date">April 2026</span>
+    </div>
+
+    <h1 class="article-title">Attackers Don't Hack In, They Log In</h1>
+
+    <p class="article-intro">
+      Most breaches don't involve exotic exploits. They involve stolen credentials, unmanaged privilege, and accounts that should not have existed in the first place.
+    </p>
+
+    <hr class="divider" />
+
+    <p>There is a persistent myth in cybersecurity that breaches happen because attackers are technically brilliant. That somewhere out there a genius is writing novel exploit code, finding zero-days in your firewall, and tunneling through your network like a ghost.</p>
+
+    <p>Sometimes that happens. Most of the time it doesn't.</p>
+
+    <p>Most of the time, the attacker just logs in.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">Why It Matters</p>
+    <h2 class="section-heading">The credential is the weapon</h2>
+
+    <p>The 2024 Verizon Data Breach Investigations Report found that stolen credentials were involved in the majority of breaches analyzed that year. Not malware. Not zero-days. Credentials. Someone got a username and password that worked, and they used it.</p>
+
+    <p>This matters because it fundamentally changes where your defensive energy should go. You cannot patch your way out of a credential problem. You cannot firewall your way out of it either. If the attacker has valid credentials for a legitimate account, most of your perimeter controls wave them through without a second thought.</p>
+
+    <p>The question is not whether your walls are high enough. The question is who has the keys, how many copies exist, and whether you would know if one went missing.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">The PAM Lesson</p>
+    <h2 class="section-heading">How the attack actually unfolds</h2>
+
+    <p>Credential-based attacks follow a predictable pattern. Understanding it is the first step to interrupting it.</p>
+
+    <ul class="checklist">
+      <li><span class="bold-lead">Initial access.</span> The attacker gets a credential. It might come from phishing, from a data breach dump, from a compromised endpoint, or from a disgruntled insider. It is often a low-privilege account — a regular user, a helpdesk technician, a contractor.</li>
+      <li><span class="bold-lead">Privilege escalation.</span> Low privilege is rarely enough. The attacker looks for a path upward. Maybe there is a service account with excessive rights running on a box they can reach. Maybe a local admin account shares a password with every workstation in the building. Maybe a domain admin left a session open on a server that got compromised. They find a rung and they climb it.</li>
+      <li><span class="bold-lead">Lateral movement.</span> With elevated credentials, the attacker moves across the environment. They are not breaking in anymore — they are walking through doors that are supposed to be open, using credentials that look legitimate to every system they touch.</li>
+      <li><span class="bold-lead">Objective.</span> Ransomware deployment. Data exfiltration. Persistence. Whatever they came for.</li>
+    </ul>
+
+    <p>PAM controls interrupt this pattern at multiple points. Vaulting credentials removes them from the places attackers commonly find them — configuration files, scripts, shared drives, memory. Least privilege limits what a compromised account can actually reach. Just-in-time access means standing privilege isn't sitting there waiting to be stolen. Session monitoring means that even when someone does get in, what they do is recorded.</p>
+
+    <p>None of these controls make a breach impossible. Together, they make the attacker's job significantly harder and make your detection and response significantly faster.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">The Account Nobody Is Watching</p>
+    <h2 class="section-heading">Orphaned accounts and why attackers love them</h2>
+
+    <p>There is a specific account type that shows up repeatedly in post-breach forensics: the orphaned account.</p>
+
+    <p>A former employee. A contractor who finished a project. A service account tied to a system that was decommissioned. An integration that was replaced but never cleaned up. The account still exists. In some cases it still has significant privilege. Nobody is actively using it, which means nobody is actively watching it.</p>
+
+    <p>Attackers love orphaned accounts. An account that nobody owns is an account that nobody will notice being used.</p>
+
+    <p>A PAM program that includes regular access reviews — not annual checkbox reviews, but genuine periodic audits of who has what and whether they still need it — closes this gap. It is not glamorous work. It is some of the most important work in your security program.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">What to Check This Week</p>
+    <h2 class="section-heading">Four things worth looking at right now</h2>
+
+    <ul class="checklist">
+      <li>Pull a list of accounts in your environment that have not authenticated in 90 days. Those are candidates for immediate review and likely for disablement. If any of them carry elevated privilege, treat that as urgent.</li>
+      <li>Ask your IT team how shared credentials are handled in your environment. Shared accounts — where multiple people know the same password — mean that when something goes wrong, you cannot attribute the action to a specific person. That is an audit failure and a forensics failure at the same time.</li>
+      <li>Find out whether your organization has a formal process for disabling accounts when someone leaves or a contractor engagement ends. If the answer is "it depends on the manager remembering to submit a ticket," that is a process gap with real security consequences.</li>
+      <li>Check where your privileged credentials actually live. If any admin passwords exist in a spreadsheet, a shared drive, a sticky note, a chat message, or a configuration file, those are not credentials under management. Those are credentials waiting to be stolen.</li>
+    </ul>
+
+    <p>The attacker does not need to be smart. They need you to leave the door unlocked. PAM is how you start locking it.</p>
+
+  </div>
+
+  <footer>
+    <span class="footer-copy">&copy; 2026 The PAM Insider llc</span>
+    <div class="footer-links">
+      <a href="/articles">Articles &amp; Thoughts</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
