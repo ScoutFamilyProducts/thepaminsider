@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Why Local Admin Rights Still Create Breach Paths — The PAM Insider</title>
+  <meta name="description" content="Local admin is the gift that keeps giving — to attackers. Still one of the most common footholds in modern breaches and most organizations know it and tolerate it anyway." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050607; color: #F8FAFC; font-family: system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; color: #9DFF00; text-transform: uppercase; }
+    .nav-back { font-size: 0.78rem; color: #64748B; transition: color 0.2s; }
+    .nav-back:hover { color: #9DFF00; }
+
+    .article-wrap { max-width: 680px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; width: 100%; flex: 1; }
+
+    .article-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .article-cat {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #9DFF00; border: 1px solid rgba(157,255,0,0.25); padding: 0.25rem 0.7rem; border-radius: 999px;
+    }
+    .article-date { font-size: 0.75rem; color: #334155; letter-spacing: 0.04em; }
+
+    .article-title {
+      font-size: 1.9rem; font-weight: 700; color: #F8FAFC;
+      line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    }
+
+    .article-intro {
+      font-size: 1rem; color: #94A3B8; line-height: 1.85;
+      border-left: 2px solid rgba(157,255,0,0.3); padding-left: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 2.5rem 0; }
+
+    .section-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #9DFF00; opacity: 0.65; margin-bottom: 0.85rem;
+    }
+
+    .section-heading {
+      font-size: 1.15rem; font-weight: 700; color: #F8FAFC; margin-bottom: 1.1rem;
+    }
+
+    p { font-size: 0.9rem; color: #94A3B8; line-height: 1.9; margin-bottom: 1.1rem; }
+
+    .bold-lead { color: #CBD5E1; font-weight: 600; }
+
+    .checklist { list-style: none; margin: 0.5rem 0 1.1rem; }
+    .checklist li {
+      font-size: 0.9rem; color: #94A3B8; line-height: 1.85;
+      padding-left: 1.25rem; position: relative; margin-bottom: 0.75rem;
+    }
+    .checklist li::before { content: '>'; position: absolute; left: 0; color: #9DFF00; opacity: 0.5; }
+
+    .warning-block {
+      border: 1px solid rgba(245,166,35,0.2);
+      background: rgba(245,166,35,0.04);
+      padding: 1.25rem 1.4rem;
+      margin: 1.5rem 0;
+      font-size: 0.88rem;
+      color: #92704a;
+      line-height: 1.8;
+    }
+    .warning-block strong { color: #b8863a; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .footer-copy { font-size: 0.7rem; color: #334155; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: #64748B; transition: color 0.2s; }
+    .footer-links a:hover { color: #9DFF00; }
+
+    @media (max-width: 600px) {
+      .article-title { font-size: 1.4rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-brand">The PAM Insider</a>
+    <a href="/articles" class="nav-back">&#8249; Articles &amp; Thoughts</a>
+  </nav>
+
+  <div class="article-wrap">
+
+    <div class="article-meta">
+      <span class="article-cat">Privilege Watch</span>
+      <span class="article-date">May 2026</span>
+    </div>
+
+    <h1 class="article-title">Why Local Admin Rights Still Create Breach Paths</h1>
+
+    <p class="article-intro">
+      Local admin is the gift that keeps giving — to attackers. Still one of the most common footholds in modern breaches and most organizations know it and tolerate it anyway.
+    </p>
+
+    <hr class="divider" />
+
+    <p>If you have been in security for more than a few years, you have had this conversation. Local admin rights are a problem. Everyone knows it. The conversation happens, someone acknowledges the risk, and then nothing changes because removing local admin is painful and the helpdesk will complain and the developers will revolt and it has always been this way.</p>
+
+    <p>Meanwhile, attackers keep exploiting it.</p>
+
+    <p>Local admin is one of the oldest, most documented, most consistently abused privilege problems in enterprise security. It is also one of the most tolerated. That gap — between knowing and doing — is where breaches live.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">Why It Matters</p>
+    <h2 class="section-heading">The blast radius is bigger than you think</h2>
+
+    <p>Local administrator rights give a user full control over a single machine. On the surface that sounds contained. In practice it is anything but.</p>
+
+    <p>When a user has local admin rights, an attacker who compromises that user's account inherits those rights. From there the options multiply quickly. They can install tools. They can disable security software. They can dump credentials from memory — including credentials for accounts that authenticated to that machine recently, which may include domain accounts with significantly higher privilege than the local user ever had.</p>
+
+    <p>That last point is the one that catches organizations off guard. A standard user with local admin on their workstation is not just a risk to their own machine. They are a potential pivot point to every privileged account that has ever touched that endpoint. Domain admins who remote in to troubleshoot. Service accounts running scheduled tasks. IT staff who logged in to push a software update. All of those credentials can potentially be harvested from a machine where the attacker has local admin.</p>
+
+    <p>The blast radius of a single compromised local admin account is almost always larger than anyone estimated.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">The PAM Lesson</p>
+    <h2 class="section-heading">Least privilege at the endpoint</h2>
+
+    <p>Removing local admin rights is an endpoint privilege management problem, and it sits squarely within the PAM discipline. The goal is least privilege at the endpoint level — users run as standard users by default, and elevated rights are granted only when needed, only for what is needed, and only for as long as it is needed.</p>
+
+    <p>In practice this means a few things:</p>
+
+    <ul class="checklist">
+      <li><span class="bold-lead">Endpoint Privilege Management tools</span> — sometimes called EPM — handle the most common objection to removing local admin, which is that users legitimately need to do things that require elevation. EPM solutions let you define policies that allow specific elevated actions without giving the user permanent admin rights. An application that needs to write to a protected directory can be allowed to do so. The user never needs to be a local admin to make that happen.</li>
+      <li><span class="bold-lead">Just-in-time elevation</span> handles the cases EPM policies don't cover. A user needs to install something unusual. A developer needs to run a specific tool. Rather than having standing local admin rights, they request elevation, it is granted for a defined window, and it expires. The action is logged. The rights disappear.</li>
+      <li><span class="bold-lead">Privileged Access Workstations</span> — PAWs — take this further for IT staff and administrators. Sensitive administrative work happens from dedicated machines with highly restricted configurations, not from the same endpoint the admin uses to check email and browse the web.</li>
+    </ul>
+
+    <p>Most organizations do not need to start at PAW level. They need to start by getting standard users off local admin. That alone closes a significant portion of the lateral movement surface that attackers rely on.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">The Password Reuse Problem</p>
+    <h2 class="section-heading">One password, every machine</h2>
+
+    <p>There is a specific local admin scenario that has been responsible for a stunning number of large-scale breaches: the shared local administrator password.</p>
+
+    <p>In environments where workstations are imaged and deployed with a standard build, it is common for every machine to have the same local administrator account with the same password. The account might be disabled. It might not. But the password is the same everywhere.</p>
+
+    <p>An attacker who recovers that password from one machine can authenticate as local admin to every machine in the environment that shares it. At that point lateral movement is not a technique — it is a formality.</p>
+
+    <p>Microsoft's Local Administrator Password Solution, LAPS, was designed specifically for this problem. It randomizes and rotates the local admin password on each machine individually, stores it in Active Directory, and makes it retrievable only by authorized accounts. It has been available for years. A significant number of organizations have still not deployed it.</p>
+
+    <div class="warning-block">
+      <strong>If your environment has a shared local admin password and LAPS is not deployed, that is not a backlog item. That is a fire.</strong>
+    </div>
+
+    <hr class="divider" />
+
+    <p class="section-label">What to Check This Week</p>
+    <h2 class="section-heading">Four places to look right now</h2>
+
+    <ul class="checklist">
+      <li>Pull a report of how many users in your environment have local administrator rights on their workstations. In most organizations this number is higher than anyone expects, and a meaningful portion of those users do not need those rights for any legitimate reason.</li>
+      <li>Find out whether your environment uses a shared local administrator password. If the local admin account on your workstations has the same password as it did when the image was built, assume that password is compromised and start the LAPS conversation today.</li>
+      <li>Ask your helpdesk how they handle requests for software installation. If the answer is "we just make them a local admin," that is a process problem with security consequences. There are better options.</li>
+      <li>Identify whether your EPM controls — if you have them — are actually configured to handle the most common elevation requests, or whether users have found workarounds that involve requesting full local admin rights to get things done.</li>
+    </ul>
+
+    <p>Local admin is not an unsolvable problem. It is a politically difficult one. The security case is straightforward. The organizational will to act on it is the variable. Understanding the actual blast radius — not just the theoretical risk — is usually what moves that conversation forward.</p>
+
+  </div>
+
+  <footer>
+    <span class="footer-copy">&copy; 2026 The PAM Insider llc</span>
+    <div class="footer-links">
+      <a href="/articles">Articles &amp; Thoughts</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
