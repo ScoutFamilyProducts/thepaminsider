@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>What Is Privileged Access Management, Really? — The PAM Insider</title>
+  <meta name="description" content="Past the vendor pitch — what PAM actually means for a real security program and why the definition matters more than the product category." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050607; color: #F8FAFC; font-family: system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; color: #9DFF00; text-transform: uppercase; }
+    .nav-back { font-size: 0.78rem; color: #64748B; transition: color 0.2s; }
+    .nav-back:hover { color: #9DFF00; }
+
+    .article-wrap { max-width: 680px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; width: 100%; flex: 1; }
+
+    .article-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .article-cat {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #9DFF00; border: 1px solid rgba(157,255,0,0.25); padding: 0.25rem 0.7rem; border-radius: 999px;
+    }
+    .article-date { font-size: 0.75rem; color: #334155; letter-spacing: 0.04em; }
+
+    .article-title {
+      font-size: 1.9rem; font-weight: 700; color: #F8FAFC;
+      line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    }
+
+    .article-intro {
+      font-size: 1rem; color: #94A3B8; line-height: 1.85;
+      border-left: 2px solid rgba(157,255,0,0.3); padding-left: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 2.5rem 0; }
+
+    .section-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #9DFF00; opacity: 0.65; margin-bottom: 0.85rem;
+    }
+
+    .section-heading {
+      font-size: 1.15rem; font-weight: 700; color: #F8FAFC; margin-bottom: 1.1rem;
+    }
+
+    p { font-size: 0.9rem; color: #94A3B8; line-height: 1.9; margin-bottom: 1.1rem; }
+
+    .bold-lead { color: #CBD5E1; font-weight: 600; }
+
+    .checklist { list-style: none; margin: 0.5rem 0 1.1rem; }
+    .checklist li {
+      font-size: 0.9rem; color: #94A3B8; line-height: 1.85;
+      padding-left: 1.25rem; position: relative; margin-bottom: 0.5rem;
+    }
+    .checklist li::before { content: '>'; position: absolute; left: 0; color: #9DFF00; opacity: 0.5; }
+
+    .disclosure-block {
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      padding: 1.25rem 1.4rem;
+      margin: 1.5rem 0;
+      font-size: 0.82rem;
+      color: #475569;
+      line-height: 1.8;
+    }
+    .disclosure-block strong { color: #64748B; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .footer-copy { font-size: 0.7rem; color: #334155; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: #64748B; transition: color 0.2s; }
+    .footer-links a:hover { color: #9DFF00; }
+
+    @media (max-width: 600px) {
+      .article-title { font-size: 1.4rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-brand">The PAM Insider</a>
+    <a href="/articles" class="nav-back">&#8249; Articles &amp; Thoughts</a>
+  </nav>
+
+  <div class="article-wrap">
+
+    <div class="article-meta">
+      <span class="article-cat">PAM Basics</span>
+      <span class="article-date">April 2026</span>
+    </div>
+
+    <h1 class="article-title">What Is Privileged Access Management, Really?</h1>
+
+    <p class="article-intro">
+      Past the vendor pitch — what PAM actually means for a real security program and why the definition matters more than the product category.
+    </p>
+
+    <hr class="divider" />
+
+    <p>Spend five minutes on any PAM vendor's website and you'll walk away thinking PAM is a product you buy, install, and check off a compliance list. It isn't.</p>
+
+    <p>Privileged Access Management is a discipline. A set of controls, practices, and decisions your organization makes about who gets elevated access, when they get it, how it's used, and what happens when it's abused. The software helps. The software is not the answer.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">Why It Matters</p>
+    <h2 class="section-heading">Privilege is the target, not just a setting</h2>
+
+    <p>Every organization has privileged access. The domain admin account. The service account running your backup jobs. The shared credentials your IT team uses to manage network infrastructure. The contractor who needed admin rights to fix something six months ago and still has them.</p>
+
+    <p>Privileged accounts are the keys to everything. They can read any file, modify any system, disable any control, and erase any log. When attackers get their hands on one — and that is the goal of most sophisticated attacks — the breach stops being a security incident and starts being a business crisis.</p>
+
+    <p>The CrowdStrike Adversary Intelligence team has consistently reported that credential-based attacks account for the majority of breach entry points. Attackers are not breaking your walls. They are walking through your front door with a key that already works.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">The PAM Lesson</p>
+    <h2 class="section-heading">What PAM actually controls — and what it doesn't</h2>
+
+    <p>A mature PAM program answers four questions about every privileged account in your environment:</p>
+
+    <ul class="checklist">
+      <li><span class="bold-lead">Who has it.</span> Not who should have it in theory. Who actually has it right now. Most organizations are surprised by this number.</li>
+      <li><span class="bold-lead">What it can do.</span> Privileged access is not binary. A service account that can read the database is different from one that can drop it. Least privilege means getting specific.</li>
+      <li><span class="bold-lead">When they can use it.</span> Standing access — always-on admin rights — is the highest-risk configuration. Just-in-time access, where elevated rights are granted for a specific window and then removed, dramatically reduces your exposure.</li>
+      <li><span class="bold-lead">What they did with it.</span> Session recording, command logging, and behavioral monitoring close the loop. If a privileged account is compromised, you need to know what it touched.</li>
+    </ul>
+
+    <p>You do not need a seven-figure PAM platform to start answering these questions. You need discipline, inventory, and the willingness to have uncomfortable conversations about access that should have been removed a long time ago.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">The Landscape Is Changing</p>
+    <h2 class="section-heading">AI, agents, and non-human identity</h2>
+
+    <p>Here is the part most PAM conversations are not having yet.</p>
+
+    <p>Your privileged access problem is no longer just about people. AI agents — automated systems that connect to your infrastructure, query your databases, retrieve secrets, and execute workflows without a human in the loop — are becoming a standard part of enterprise operations. And most organizations are managing their credentials the same way they managed service account passwords in 2009. Hardcoded. Embedded in prompts. Shared without oversight. Nobody really owns them.</p>
+
+    <p>Non-human identities now routinely outnumber human ones in enterprise environments. Every AI agent that touches a privileged system is a credential risk. Every integration that pulls a secret from plain text configuration is an audit problem. Every automated workflow with standing access is a lateral movement path waiting to be discovered.</p>
+
+    <p>The PAM discipline has to expand to cover this. The same four questions apply — who has it, what can it do, when can it use it, what did it do — but the identity on the other end of those questions is increasingly not a person.</p>
+
+    <div class="disclosure-block">
+      <strong>Disclosure:</strong> The author works for Delinea. That said, credit is due where it is earned. In September 2025, Delinea released its Model Context Protocol (MCP) Server as a free, open-source project on GitHub — and it is a meaningful step in the right direction. Rather than locking agentic credential access behind a proprietary wall, the approach applies the same PAM-aligned controls to AI agents that you would apply to a human: ephemeral tokens instead of standing credentials, OAuth-based identity verification, scoped access surfaces, and full auditability on every call. Secrets stay in the vault. The agent gets a short-lived token for what it needs, when it needs it, and nothing more.
+    </div>
+
+    <p>That is what good looks like. The broader PAM market needs to follow. AI agents are not a future problem. They are in your environment right now, and most of them are running with more privilege than they need and less visibility than they deserve.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">What to Check This Week</p>
+    <h2 class="section-heading">Three questions to ask about your own environment</h2>
+
+    <ul class="checklist">
+      <li>Find every account in your environment with domain admin rights. Count them. Ask whether each one needs to be a domain admin or whether that was just the path of least resistance at the time.</li>
+      <li>Identify your service accounts. List them, find out who owns them, and note when the password last rotated. If you cannot answer those three questions for a given account, that account is a risk.</li>
+      <li>Check for shared credentials. Any account where multiple people know the password is an account where nobody is accountable. That is not a PAM control. That is a liability.</li>
+      <li>Ask your team how your AI agents and automated workflows are authenticating to privileged systems. If the answer involves plain text, hardcoded secrets, or "I'm not sure," that is your next project.</li>
+    </ul>
+
+    <p>PAM starts with knowing what you have. Most organizations skip that step and go straight to evaluating software. Don't.</p>
+
+  </div>
+
+  <footer>
+    <span class="footer-copy">&copy; 2026 The PAM Insider llc</span>
+    <div class="footer-links">
+      <a href="/articles">Articles &amp; Thoughts</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
