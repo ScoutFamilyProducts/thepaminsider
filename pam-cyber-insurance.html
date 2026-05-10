@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Why PAM Belongs in Cyber Insurance Conversations — The PAM Insider</title>
+  <meta name="description" content="Underwriters are asking about privileged access controls. If your team can't answer those questions, your policy and your premium reflect that gap." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050607; color: #F8FAFC; font-family: system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; color: #9DFF00; text-transform: uppercase; }
+    .nav-back { font-size: 0.78rem; color: #64748B; transition: color 0.2s; }
+    .nav-back:hover { color: #9DFF00; }
+
+    .article-wrap { max-width: 680px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; width: 100%; flex: 1; }
+
+    .article-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .article-cat {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #9DFF00; border: 1px solid rgba(157,255,0,0.25); padding: 0.25rem 0.7rem; border-radius: 999px;
+    }
+    .article-date { font-size: 0.75rem; color: #334155; letter-spacing: 0.04em; }
+
+    .article-title {
+      font-size: 1.9rem; font-weight: 700; color: #F8FAFC;
+      line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    }
+
+    .article-intro {
+      font-size: 1rem; color: #94A3B8; line-height: 1.85;
+      border-left: 2px solid rgba(157,255,0,0.3); padding-left: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 2.5rem 0; }
+
+    .section-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #9DFF00; opacity: 0.65; margin-bottom: 0.85rem;
+    }
+
+    .section-heading {
+      font-size: 1.15rem; font-weight: 700; color: #F8FAFC; margin-bottom: 1.1rem;
+    }
+
+    p { font-size: 0.9rem; color: #94A3B8; line-height: 1.9; margin-bottom: 1.1rem; }
+
+    .bold-lead { color: #CBD5E1; font-weight: 600; }
+
+    .checklist { list-style: none; margin: 0.5rem 0 1.1rem; }
+    .checklist li {
+      font-size: 0.9rem; color: #94A3B8; line-height: 1.85;
+      padding-left: 1.25rem; position: relative; margin-bottom: 0.75rem;
+    }
+    .checklist li::before { content: '>'; position: absolute; left: 0; color: #9DFF00; opacity: 0.5; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .footer-copy { font-size: 0.7rem; color: #334155; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: #64748B; transition: color 0.2s; }
+    .footer-links a:hover { color: #9DFF00; }
+
+    @media (max-width: 600px) {
+      .article-title { font-size: 1.4rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-brand">The PAM Insider</a>
+    <a href="/articles" class="nav-back">&#8249; Articles &amp; Thoughts</a>
+  </nav>
+
+  <div class="article-wrap">
+
+    <div class="article-meta">
+      <span class="article-cat">Field Lessons</span>
+      <span class="article-date">May 2026</span>
+    </div>
+
+    <h1 class="article-title">Why PAM Belongs in Cyber Insurance Conversations</h1>
+
+    <p class="article-intro">
+      Underwriters are asking about privileged access controls. If your team cannot answer those questions, your policy and your premium reflect that gap.
+    </p>
+
+    <hr class="divider" />
+
+    <p>Something shifted in the cyber insurance market around 2021 and it has not shifted back. Underwriters stopped treating PAM as a nice-to-have and started treating it as a prerequisite. The questionnaires got longer. The questions got more specific. And organizations that could not demonstrate basic privileged access controls started seeing their premiums climb, their coverage shrink, or their applications declined outright.</p>
+
+    <p>If your security team and your insurance broker are still having separate conversations, that is a problem worth fixing.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">Why It Matters</p>
+    <h2 class="section-heading">Insurers have read the breach reports</h2>
+
+    <p>Cyber insurers are in the business of predicting loss. They have years of breach data at this point, and that data consistently points to the same place: privileged access. Compromised admin credentials. Unmanaged service accounts. Lateral movement enabled by excessive rights. Ransomware deployed by an attacker who escalated from a phished helpdesk account to domain admin in under an hour.</p>
+
+    <p>Insurers have read those post-breach reports. They know what the common thread is. When they ask about your PAM controls, they are not asking because they care about your security program in the abstract. They are asking because the answer directly predicts how likely you are to file a large claim.</p>
+
+    <p>Organizations that cannot demonstrate PAM controls are statistically higher-risk policyholders. The market has priced that accordingly.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">The PAM Lesson</p>
+    <h2 class="section-heading">What underwriters are actually asking</h2>
+
+    <p>Cyber insurance applications have become surprisingly specific about privileged access. The questions have evolved from "do you have a PAM solution" to granular inquiries about specific controls. Here is what underwriters are commonly asking about and what those questions actually mean:</p>
+
+    <ul class="checklist">
+      <li><span class="bold-lead">Privileged account inventory.</span> Do you know what privileged accounts exist in your environment? Can you demonstrate that the list is current and maintained? An organization that cannot answer this question cannot credibly answer any of the questions that follow.</li>
+      <li><span class="bold-lead">Multi-factor authentication on privileged accounts.</span> MFA on standard user accounts is now table stakes. MFA on privileged accounts — domain admins, cloud console access, remote access for IT staff — is where underwriters are focused. If privileged accounts can be accessed with just a password, that is a significant underwriting flag.</li>
+      <li><span class="bold-lead">Credential vaulting.</span> Are privileged credentials stored in a managed vault with access controls and audit logging, or are they in a spreadsheet, a shared drive, or someone's head? Vaulting is one of the clearest signals to an underwriter that an organization has made a deliberate investment in managing privileged access.</li>
+      <li><span class="bold-lead">Least privilege and access reviews.</span> Are users operating with the minimum access they need, and is that access reviewed regularly? Standing admin rights for accounts that do not need them is the kind of finding that shows up in breach investigations and insurance claim reviews alike.</li>
+      <li><span class="bold-lead">Privileged session monitoring.</span> Can you demonstrate that privileged activity is logged and monitored? Session recording is not just a compliance checkbox — it is evidence that you would know if something went wrong and would have the forensic record to understand what happened.</li>
+    </ul>
+
+    <p>The organizations that answer these questions well are not necessarily the ones with the most expensive PAM platform. They are the ones that have done the foundational work: inventory, ownership, vaulting, MFA, and reviews.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">The Conversation Your Team Needs to Have</p>
+    <h2 class="section-heading">Security and the broker need to be in the same room</h2>
+
+    <p>Most security teams and their insurance brokers operate in parallel with minimal overlap. The broker handles the application. The security team handles the controls. The connection between the two is often weaker than it should be.</p>
+
+    <p>This creates problems in both directions.</p>
+
+    <p>Security teams sometimes implement controls without understanding how they will be evaluated at renewal. A PAM deployment that is technically solid but poorly documented does not translate well on an insurance application. If you cannot articulate what controls you have and produce evidence to support the claims, the underwriter treats it as if the control does not exist.</p>
+
+    <p>Brokers sometimes complete insurance applications without fully understanding the technical environment they are describing. Answers get rounded up. Controls get claimed that are partially implemented or exist only on paper. When a claim is filed, the gap between what was claimed on the application and what was actually in place becomes a coverage dispute.</p>
+
+    <p>The fix is straightforward: get the security team in the room when the application is being completed. Not to review the final document — to answer the questions directly. The people who know what controls exist and how they are implemented should be the ones describing them.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">What to Check This Week</p>
+    <h2 class="section-heading">Four things worth doing before your next renewal</h2>
+
+    <ul class="checklist">
+      <li>Pull your most recent cyber insurance application and read the PAM-related questions carefully. For each one, ask whether your current environment actually supports the answer that was given. If there are gaps between what was claimed and what exists, those gaps need to be closed before renewal.</li>
+      <li>Find out when your policy renews and build a timeline backward. If meaningful PAM improvements need to happen before renewal — vaulting, MFA on privileged accounts, access reviews — those projects need to start now, not the month before the application is due.</li>
+      <li>Ask your broker specifically what underwriters are asking about PAM this year. The questionnaires change. What was sufficient eighteen months ago may not be sufficient today. Your broker should know what the current threshold looks like.</li>
+      <li>Document what you have. An implemented control that is not documented is an invisible control from an underwriting perspective. Session recording logs, vault access reports, privileged account inventories, and access review records are the evidence that turns your security program into a credible insurance application.</li>
+    </ul>
+
+    <p>PAM is no longer a security-only conversation. It is a financial conversation, a risk conversation, and an insurance conversation. The organizations that treat it that way are better positioned on all three fronts.</p>
+
+  </div>
+
+  <footer>
+    <span class="footer-copy">&copy; 2026 The PAM Insider llc</span>
+    <div class="footer-links">
+      <a href="/articles">Articles &amp; Thoughts</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
