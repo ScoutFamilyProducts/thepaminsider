@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Articles &amp; Thoughts — The PAM Insider</title>
+  <meta name="description" content="Personal perspective and technical breakdowns on privileged access management from The PAM Insider." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #050607;
+      color: #F8FAFC;
+      font-family: system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* HEADER */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+      width: 100%;
+    }
+    .site-brand {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9DFF00;
+    }
+    .site-back {
+      font-size: 0.78rem;
+      color: #64748B;
+      transition: color 0.2s;
+    }
+    .site-back:hover { color: #9DFF00; }
+
+    /* PAGE TITLE */
+    .page-intro {
+      max-width: 1100px;
+      margin: 0 auto 3.5rem;
+      width: 100%;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-bottom: 2.5rem;
+    }
+    .page-intro h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #F8FAFC;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+    .page-intro p {
+      font-size: 0.9rem;
+      color: #64748B;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* SECTION */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto 4rem;
+      width: 100%;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9DFF00;
+      white-space: nowrap;
+    }
+    .section-title.amber { color: #F5A623; }
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* CARD */
+    .card {
+      background: #050607;
+      padding: 1.6rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      transition: background 0.2s;
+      min-height: 180px;
+    }
+    .card:hover { background: #0b0f12; }
+    .card.dim { opacity: 0.32; pointer-events: none; }
+
+    .card-cat {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #9DFF00;
+    }
+    .card-cat.amber { color: #F5A623; }
+    .card-cat.purple { color: #8B5CF6; }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #F8FAFC;
+      line-height: 1.45;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: #64748B;
+      line-height: 1.75;
+      flex: 1;
+    }
+
+    .card-cta {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #9DFF00;
+      opacity: 0.75;
+      margin-top: 0.25rem;
+    }
+    .card-cta.amber { color: #F5A623; }
+    .card-cta.muted { color: #1E293B; }
+
+    /* FOOTER */
+    footer {
+      margin-top: auto;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .footer-copy { font-size: 0.7rem; color: #334155; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.75rem; color: #64748B; transition: color 0.2s; }
+    .footer-links a:hover { color: #9DFF00; }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      .page-intro h1 { font-size: 1.5rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-header">
+    <a href="/" class="site-brand">The PAM Insider</a>
+    <a href="/" class="site-back">&#8592; Home</a>
+  </div>
+
+  <div class="page-intro">
+    <h1>Articles &amp; Thoughts</h1>
+    <p>Personal perspective and technical breakdowns on privileged access management — plain English, no vendor agenda, written for practitioners.</p>
+  </div>
+
+  <!-- TPI THOUGHTS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-title amber">TPI Thoughts</span>
+      <div class="section-rule"></div>
+    </div>
+    <div class="grid">
+      <div class="card dim">
+        <span class="card-cat amber">TPI Thoughts</span>
+        <span class="card-title">First post coming soon</span>
+        <span class="card-desc">Personal takes, industry observations, and things worth saying out loud. Not technical. Not vendor-adjacent. Just honest.</span>
+        <span class="card-cta muted">Coming Soon</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL CONVOS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-title">Technical Convos</span>
+      <div class="section-rule"></div>
+    </div>
+    <div class="grid">
+
+      <a href="what-is-pam.html" class="card">
+        <span class="card-cat">PAM Basics</span>
+        <span class="card-title">What Is Privileged Access Management, Really?</span>
+        <span class="card-desc">Past the vendor pitch — what PAM actually means for a real security program and why the definition matters more than the product category.</span>
+        <span class="card-cta">Read &rsaquo;</span>
+      </a>
+
+      <a href="local-admin-rights.html" class="card">
+        <span class="card-cat">Privilege Watch</span>
+        <span class="card-title">Why Local Admin Rights Still Create Breach Paths</span>
+        <span class="card-desc">Local admin is the gift that keeps giving — to attackers. Still one of the most common footholds in modern breaches.</span>
+        <span class="card-cta">Read &rsaquo;</span>
+      </a>
+
+      <a href="attackers-log-in.html" class="card">
+        <span class="card-cat">Field Lessons</span>
+        <span class="card-title">Attackers Don't Hack In, They Log In</span>
+        <span class="card-desc">Most breaches don't involve exotic exploits. They involve stolen credentials, unmanaged privilege, and accounts that should not have existed.</span>
+        <span class="card-cta">Read &rsaquo;</span>
+      </a>
+
+      <a href="service-accounts.html" class="card">
+        <span class="card-cat">PAM Basics</span>
+        <span class="card-title">Service Accounts: The Forgotten Privileged Identities</span>
+        <span class="card-desc">They outnumber human accounts, rarely rotate, almost nobody owns them, and they are everywhere. One of the most overlooked attack surfaces in enterprise environments.</span>
+        <span class="card-cta">Read &rsaquo;</span>
+      </a>
+
+      <div class="card dim">
+        <span class="card-cat">PAM Basics</span>
+        <span class="card-title">Just-in-Time Access Explained Without the Vendor Fog</span>
+        <span class="card-desc">What JIT access actually means in practice — not in a vendor slide deck.</span>
+        <span class="card-cta muted">Coming Soon</span>
+      </div>
+
+      <div class="card dim">
+        <span class="card-cat">Field Lessons</span>
+        <span class="card-title">Why PAM Belongs in Cyber Insurance Conversations</span>
+        <span class="card-desc">Underwriters are asking about privileged access controls. If your team can't answer those questions, your policy and your premium reflect that gap.</span>
+        <span class="card-cta muted">Coming Soon</span>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-copy">&copy; 2026 The PAM Insider llc</span>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/phantom-privilege">Phantom Privilege</a>
+      <a href="https://www.youtube.com/channel/UCDcvwggGVv0Ja4uoOpSvYnw" target="_blank" rel="noopener">YouTube</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
