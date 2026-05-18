@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>What Is a Privileged Access Workstation and Do You Actually Need One? — The PAM Insider</title>
+  <meta name="description" content="PAW gets recommended in every serious PAM conversation and built in almost none. Here is where it actually fits in the PAM maturity stack." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050607; color: #F8FAFC; font-family: system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; color: #9DFF00; text-transform: uppercase; }
+    .nav-back { font-size: 0.78rem; color: #64748B; transition: color 0.2s; }
+    .nav-back:hover { color: #9DFF00; }
+
+    .article-wrap { max-width: 680px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; width: 100%; flex: 1; }
+
+    .article-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .article-cat {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #9DFF00; border: 1px solid rgba(157,255,0,0.25); padding: 0.25rem 0.7rem; border-radius: 999px;
+    }
+    .article-date { font-size: 0.75rem; color: #334155; letter-spacing: 0.04em; }
+
+    .article-title {
+      font-size: 1.9rem; font-weight: 700; color: #F8FAFC;
+      line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    }
+
+    .article-intro {
+      font-size: 1rem; color: #94A3B8; line-height: 1.85;
+      border-left: 2px solid rgba(157,255,0,0.3); padding-left: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 2.5rem 0; }
+
+    .section-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #9DFF00; opacity: 0.65; margin-bottom: 0.85rem;
+    }
+
+    .section-heading {
+      font-size: 1.15rem; font-weight: 700; color: #F8FAFC; margin-bottom: 1.1rem;
+    }
+
+    p { font-size: 0.9rem; color: #94A3B8; line-height: 1.9; margin-bottom: 1.1rem; }
+
+    .checklist { list-style: none; margin: 0.5rem 0 1.1rem; }
+    .checklist li {
+      font-size: 0.9rem; color: #94A3B8; line-height: 1.85;
+      padding-left: 1.25rem; position: relative; margin-bottom: 0.75rem;
+    }
+    .checklist li::before { content: '>'; position: absolute; left: 0; color: #9DFF00; opacity: 0.5; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .footer-copy { font-size: 0.7rem; color: #334155; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: #64748B; transition: color 0.2s; }
+    .footer-links a:hover { color: #9DFF00; }
+
+    @media (max-width: 600px) {
+      .article-title { font-size: 1.4rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-brand">The PAM Insider</a>
+    <a href="/articles" class="nav-back">&#8249; Articles &amp; Thoughts</a>
+  </nav>
+
+  <div class="article-wrap">
+
+    <div class="article-meta">
+      <span class="article-cat">PAM Basics</span>
+      <span class="article-date">May 18, 2026</span>
+    </div>
+
+    <h1 class="article-title">What Is a Privileged Access Workstation and Do You Actually Need One?</h1>
+
+    <p class="article-intro">
+      PAW gets recommended in almost every serious PAM conversation and built in almost none. Understanding where it fits in the PAM maturity stack is more useful than treating it as a standalone recommendation that either gets done or does not.
+    </p>
+
+    <hr class="divider" />
+
+    <p>PAW gets recommended in almost every serious PAM conversation. It shows up in NIST guidance, in vendor presentations, in security architecture reviews. And in most organizations it gets nodded at, written into a roadmap somewhere, and never actually built.</p>
+
+    <p>That pattern is worth examining. Because in most cases the organizations that never get to PAW are not failing — they are building the PAM foundation that makes PAW meaningful in the first place. Understanding where PAW fits in the maturity stack is more useful than treating it as a standalone recommendation that either gets done or does not.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">Why It Matters</p>
+    <h2 class="section-heading">The workstation is the launchpad</h2>
+
+    <p>The problem PAW addresses is straightforward: where are your administrators doing their administrative work?</p>
+
+    <p>In most organizations the answer is the same workstation they use for everything else. The domain admin checks email, browses the web, clicks on the occasional phishing link, and then opens a privileged session to a domain controller — all from the same machine. The attack surface for compromising that administrative session is everything that machine does all day long.</p>
+
+    <p>An attacker who compromises an administrator's everyday workstation gains access to whatever privileged sessions that administrator opens. Domain controllers. Server infrastructure. Security tooling. The workstation is the launchpad for everything the administrator can do, and most organizations protect it the same way they protect a standard user endpoint.</p>
+
+    <p>PAW addresses that by separating the environment where compromise happens from the environment where privileged work is performed. But before we get to the hardware conversation, it is worth walking through the PAM controls that get you most of the way there — because most organizations are not starting from zero.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">The PAM Lesson</p>
+    <h2 class="section-heading">The controls that close most of the gap</h2>
+
+    <p>A mature PAM program provides layered controls that address privileged access risk from multiple directions, and most of those controls live in software your organization may already own.</p>
+
+    <p>The starting point is credential vaulting with session launch. When a domain administrator checks a credential out of a vault and launches their session through a broker — no password ever touches the clipboard, no credential is ever visible to the user, the session is recorded with keystrokes, and the password rotates automatically at check-in — the credential risk is largely eliminated. The administrator cannot leak what they never saw. The session is fully audited. The access is time-bound. That is a strong control and it is the right place to start.</p>
+
+    <p>Endpoint Privilege Management closes the next gap. EPM removes local administrator rights from workstations and controls which applications can execute and at what privilege level. An administrator running without local admin rights on their everyday workstation cannot install arbitrary software, cannot disable security tooling, and cannot be trivially leveraged as a pivot point even if their session is compromised. EPM applies the principle of least privilege at the endpoint level — the same principle that drives vaulting, applied to the machine itself rather than the credential.</p>
+
+    <p>Together, vaulting with launcher and endpoint privilege management close a significant portion of the risk that a PAW is designed to address. The credential is protected. The endpoint is hardened. Administrative sessions are audited. Local admin exposure is removed. For many organizations, getting both of those controls deployed and actually used by administrators is the right objective — not a dedicated hardware program they are not ready for.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">Where PAW Fits</p>
+    <h2 class="section-heading">The top of the PAM maturity stack</h2>
+
+    <p>A Privileged Access Workstation is a dedicated, hardened device used exclusively for administrative tasks. It does not browse the web. It does not read email. It does not run general productivity software. It connects only to the systems it needs to manage and nothing else.</p>
+
+    <p>Application whitelisting ensures only approved tools run on the device. Network segmentation isolates it on an administrative segment separate from the corporate environment. Internet access is removed entirely. MFA, preferably hardware-based, is required for all sessions initiated from the device. Everything that happens on it is logged and monitored.</p>
+
+    <p>The PAW addresses the residual endpoint risk that EPM and vaulting do not fully eliminate. Even with local admin removed and credentials vaulted, the workstation the administrator uses to initiate sessions can be compromised through phishing or a malicious attachment. An attacker on that machine can observe the administrative session in real time, see the targets being accessed, and potentially interact with what the administrator sees. The vault protects the credential. EPM hardens the endpoint. The PAW isolates the administrative environment entirely.</p>
+
+    <p>This is where PAW belongs in the maturity conversation — not as an alternative to PAM controls, but as the advanced layer on top of them. Organizations that have vaulting deployed, EPM in place, and their highest-privilege administrators actually using launcher for all privileged sessions are the organizations for whom a PAW program is the natural next conversation. It is the top of the PAM maturity stack, not the starting point.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">Do You Actually Need One?</p>
+    <h2 class="section-heading">It depends on where you are in the stack</h2>
+
+    <p>If you have domain administrators doing privileged work from standard workstations with no vaulting and no endpoint privilege management, PAW is not your first priority — getting credentials into a vault and removing local admin is. Those controls are foundational and they are available now in the PAM platforms most organizations already own.</p>
+
+    <p>If you have vault-and-launcher deployed and EPM in place, and your highest-privilege administrators are actually using both, then yes — PAW is a serious conversation worth having. Particularly for Tier 0 administrators managing domain controllers, PKI infrastructure, and other systems where a compromise would be catastrophic.</p>
+
+    <p>If you are subject to CMMC, FedRAMP, or similar federal frameworks, PAW is an expected control at the higher assurance levels regardless of what else you have in place.</p>
+
+    <p>For organizations building toward PAW, Microsoft's tiering model provides a practical roadmap. Tier 0 covers domain-level administration — start here. Tier 1 covers server administration. Tier 2 covers workstation administration. You do not have to build all three tiers simultaneously. Start with the access that, if compromised, would end the conversation.</p>
+
+    <p>Virtual PAWs — where the administrative environment runs in an isolated VM on a standard workstation — are a practical bridge for organizations building toward dedicated hardware. The isolation is not as complete as a physical PAW, but it meaningfully raises the bar compared to doing privileged work in a general-purpose session.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">What to Check This Week</p>
+    <h2 class="section-heading">Four questions worth answering right now</h2>
+
+    <ul class="checklist">
+      <li>Identify your highest-privilege administrators and ask two questions: are their credentials in a vault with launcher enforced for all privileged sessions, and do they have local admin rights on their everyday workstations? The answers tell you exactly where you are in the maturity stack and what to prioritize next.</li>
+      <li>If you have a PAM vault, pull a report on which privileged sessions were brokered through the launcher versus initiated with credentials that were copied manually. Vault adoption without launcher adoption is a partial control. The gap between those two numbers is your current exposure.</li>
+      <li>If you have endpoint privilege management deployed, verify that your administrative workstations are actually running under standard user rights and that elevation is controlled and logged. EPM that was deployed and then exceptions were carved out for convenience is not EPM — it is a reporting tool.</li>
+      <li>For organizations that have both controls mature and enforced, start the PAW conversation for your Tier 0 administrators. Map out what a dedicated administrative environment would look like, what systems it would need to reach, and what it would need to be isolated from. The planning work is valuable even before the hardware conversation happens.</li>
+    </ul>
+
+    <p>PAM controls — vaulting, session management, endpoint privilege management — are what most organizations need to focus on first and what deliver the most measurable risk reduction for the investment. PAW is where that journey leads for the environments and the administrator populations where the residual risk is still too high. It is not a replacement for PAM. It is where PAM maturity takes you.</p>
+
+  </div>
+
+  <footer>
+    <span class="footer-copy">&copy; 2026 The PAM Insider llc</span>
+    <div class="footer-links">
+      <a href="/articles">Articles &amp; Thoughts</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
