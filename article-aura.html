@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Identity Protection Company That Got Phished — The PAM Insider</title>
+  <meta name="description" content="Aura sells identity theft protection. ShinyHunters stole 900,000 customer records via a voice phishing call. The PAM lesson hiding in plain sight." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050607; color: #F8FAFC; font-family: system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; color: #9DFF00; text-transform: uppercase; }
+    .nav-back { font-size: 0.78rem; color: #64748B; transition: color 0.2s; }
+    .nav-back:hover { color: #9DFF00; }
+
+    .article-wrap { max-width: 680px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; width: 100%; flex: 1; }
+
+    .article-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .article-cat {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #F5A623; border: 1px solid rgba(245,166,35,0.25); padding: 0.25rem 0.7rem; border-radius: 999px;
+    }
+    .article-date { font-size: 0.75rem; color: #334155; letter-spacing: 0.04em; }
+
+    .article-title {
+      font-size: 1.9rem; font-weight: 700; color: #F8FAFC;
+      line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 2.5rem;
+    }
+
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 2.5rem 0; }
+
+    p { font-size: 0.95rem; color: #94A3B8; line-height: 1.95; margin-bottom: 1.2rem; }
+
+    p.lead { font-size: 1.05rem; color: #CBD5E1; }
+
+    p.kicker {
+      font-size: 0.85rem; color: #475569; font-style: italic;
+      border-left: 2px solid rgba(245,166,35,0.3); padding-left: 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .contact-line {
+      font-size: 0.88rem; color: #64748B; line-height: 1.8; margin-top: 1.5rem;
+    }
+    .contact-line a {
+      color: #64748B; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s;
+    }
+    .contact-line a:hover { color: #9DFF00; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .footer-copy { font-size: 0.7rem; color: #334155; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: #64748B; transition: color 0.2s; }
+    .footer-links a:hover { color: #9DFF00; }
+
+    @media (max-width: 600px) {
+      .article-title { font-size: 1.4rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-brand">The PAM Insider</a>
+    <a href="/articles" class="nav-back">&#8249; Articles &amp; Thoughts</a>
+  </nav>
+
+  <div class="article-wrap">
+
+    <div class="article-meta">
+      <span class="article-cat">TPI Thoughts</span>
+      <span class="article-date">May 31, 2026</span>
+    </div>
+
+    <h1 class="article-title">The Identity Protection Company That Got Phished</h1>
+
+    <p class="lead">In March 2026, Aura got breached.</p>
+
+    <p>If you are not familiar with Aura, they sell identity theft protection. Credit monitoring. Online security services. Their entire value proposition is keeping your identity safe. That is what people pay them for.</p>
+
+    <p>ShinyHunters walked out with 900,000 customer records. Names, home addresses, phone numbers, email addresses. Nearly a million people who paid a company to protect their identity had their identity information stolen from that company.</p>
+
+    <p>The entry point was not a zero-day. It was not a sophisticated nation-state attack. It was a voice phishing call. Someone called an Aura employee, said the right things, and that employee handed over access to an account. One person. One phone call. 900,000 records.</p>
+
+    <hr class="divider" />
+
+    <p>I am not writing this to pile on Aura. Social engineering works. It has always worked. It will keep working because the human element is the hardest part of any security program to harden. The people answering phones and responding to urgent requests are doing their jobs. Attackers know that and they exploit it deliberately.</p>
+
+    <p>What I keep coming back to is what happens after that phone call.</p>
+
+    <p>One employee account gets compromised. That account has access to a marketing database containing records for 900,000 customers. There is no friction between the compromised account and the data. There is apparently no alert that fires when a single session starts accessing records at the scale required to exfiltrate nearly a million entries. There is no anomaly detection that asks why this account is suddenly doing something it has never done before.</p>
+
+    <p>This is the PAM conversation hiding inside a story that most people are reading as a phishing story.</p>
+
+    <hr class="divider" />
+
+    <p>The phishing call is the entry point. What happens after the entry point is a privileged access problem.</p>
+
+    <p>If that employee account had access only to what it needed for its specific role — and nothing more — the blast radius of that phone call shrinks dramatically. If that account's activity was baselined and monitored, a bulk export of 900,000 records generates an alert before the exfiltration is complete. If access to sensitive customer data required additional authentication or approval beyond the standard session, a compromised credential is not automatically a data breach.</p>
+
+    <p>None of those controls stop the phishing call. They stop the phishing call from becoming a 900,000-record breach.</p>
+
+    <p>The principle of least privilege is not just about administrators. It is about every account that touches data someone would pay to steal. The analytics layer is not just for PAM vaults and domain admin sessions. It is for any account with access worth monitoring.</p>
+
+    <p>Aura's breach is being covered as an irony story — the identity protection company that lost identity data. The real story is more useful than the irony. It is a reminder that the credential is just the door. What you do on the other side of the door is where privileged access management lives.</p>
+
+    <hr class="divider" />
+
+    <p class="kicker">One employee account. One phone call. 900,000 records.</p>
+
+    <p>The question worth asking about your own environment is not whether your employees would fall for a voice phishing call. Some of them would. Some of mine would. That is not a failure of character — it is a feature of how humans work under social pressure.</p>
+
+    <p>The question is what an attacker gets after that call. If the answer is everything that employee could ever touch, with no monitoring and no friction, the phone call is the whole breach. If the answer is a limited scope account with behavioral monitoring and least-privilege access, the phone call is an incident you investigate on a Tuesday morning.</p>
+
+    <p>That is the difference a PAM program makes. Not whether the call happens. What it costs when it does.</p>
+
+    <p class="contact-line">Thoughts or war stories from your own environment — <a href="mailto:thepaminsider@gmail.com">thepaminsider@gmail.com</a>.</p>
+
+  </div>
+
+  <footer>
+    <span class="footer-copy">&copy; 2026 The PAM Insider llc</span>
+    <div class="footer-links">
+      <a href="/articles">Articles &amp; Thoughts</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
