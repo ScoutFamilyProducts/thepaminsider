@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>You Can't Defend What You Can't See: The Case for PAM Analytics — The PAM Insider</title>
+  <meta name="description" content="A vault is a storage and access control system. It is not a detection system. Here is what PAM analytics actually does and why most organizations are missing it." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050607; color: #F8FAFC; font-family: system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; color: #9DFF00; text-transform: uppercase; }
+    .nav-back { font-size: 0.78rem; color: #64748B; transition: color 0.2s; }
+    .nav-back:hover { color: #9DFF00; }
+
+    .article-wrap { max-width: 680px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; width: 100%; flex: 1; }
+
+    .article-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .article-cat {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #9DFF00; border: 1px solid rgba(157,255,0,0.25); padding: 0.25rem 0.7rem; border-radius: 999px;
+    }
+    .article-date { font-size: 0.75rem; color: #334155; letter-spacing: 0.04em; }
+
+    .article-title {
+      font-size: 1.9rem; font-weight: 700; color: #F8FAFC;
+      line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    }
+
+    .article-intro {
+      font-size: 1rem; color: #94A3B8; line-height: 1.85;
+      border-left: 2px solid rgba(157,255,0,0.3); padding-left: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 2.5rem 0; }
+
+    .section-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #9DFF00; opacity: 0.65; margin-bottom: 0.85rem;
+    }
+
+    .section-heading {
+      font-size: 1.15rem; font-weight: 700; color: #F8FAFC; margin-bottom: 1.1rem;
+    }
+
+    p { font-size: 0.9rem; color: #94A3B8; line-height: 1.9; margin-bottom: 1.1rem; }
+
+    .checklist { list-style: none; margin: 0.5rem 0 1.1rem; }
+    .checklist li {
+      font-size: 0.9rem; color: #94A3B8; line-height: 1.85;
+      padding-left: 1.25rem; position: relative; margin-bottom: 0.75rem;
+    }
+    .checklist li::before { content: '>'; position: absolute; left: 0; color: #9DFF00; opacity: 0.5; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .footer-copy { font-size: 0.7rem; color: #334155; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: #64748B; transition: color 0.2s; }
+    .footer-links a:hover { color: #9DFF00; }
+
+    @media (max-width: 600px) {
+      .article-title { font-size: 1.4rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-brand">The PAM Insider</a>
+    <a href="/articles" class="nav-back">&#8249; Articles &amp; Thoughts</a>
+  </nav>
+
+  <div class="article-wrap">
+
+    <div class="article-meta">
+      <span class="article-cat">Privilege Watch</span>
+      <span class="article-date">June 1, 2026</span>
+    </div>
+
+    <h1 class="article-title">You Can't Defend What You Can't See: The Case for PAM Analytics</h1>
+
+    <p class="article-intro">
+      Most PAM conversations start and end with the vault. But a vault is a storage and access control system — not a detection system. The half of the program most organizations are missing is the part that tells you when something is going wrong.
+    </p>
+
+    <hr class="divider" />
+
+    <p>Most PAM conversations start and end with the vault. Get credentials out of spreadsheets and into a managed system. Rotate passwords. Enforce MFA on privileged accounts. Control who can check out what. That is the foundation and it is the right place to start.</p>
+
+    <p>But a vault is a storage and access control system. It is not a detection system. And in 2026, the organizations that treat their PAM deployment as complete once the vault is running are missing the half of the program that actually tells you when something is going wrong.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">Why It Matters</p>
+    <h2 class="section-heading">The blind spot after the credential leaves the vault</h2>
+
+    <p>Consider what happened in May 2026 with the FortiClient EMS campaign. Threat actors exploited a critical pre-authentication vulnerability to achieve privilege escalation, then disguised a credential-stealing payload as a legitimate endpoint update and delivered it silently through PowerShell across managed endpoints. The entry point was a trusted management system. The delivery mechanism looked like normal administrative activity. The credentials harvested were real, valid, and indistinguishable from authorized use once in an attacker's hands.</p>
+
+    <p>A vault stores those credentials securely. A vault does not tell you that the account checking them out at 2am is doing something it has never done before. A vault does not flag that a privileged session that normally touches three servers suddenly accessed forty. A vault does not surface the pattern that connects a credential checkout to a lateral movement event forty minutes later.</p>
+
+    <p>That is what analytics does. And without it, your PAM program has a significant blind spot at exactly the moment it matters most — after a credential has been compromised and the attacker is using it.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">The PAM Lesson</p>
+    <h2 class="section-heading">The visibility layer that makes PAM a security control</h2>
+
+    <p>PAM analytics is not a separate product bolted onto a vault. It is the visibility layer that makes the entire PAM investment meaningful as a security control rather than just a compliance checkbox.</p>
+
+    <p>The starting point is behavioral baselining. Every privileged account has a normal pattern — what systems it accesses, what times it operates, what commands it runs, what volumes of data it touches. Establishing that baseline is what makes anomalies visible. Without it, you are watching a stream of privileged activity with no frame of reference for what normal looks like.</p>
+
+    <p>Anomaly detection builds on that baseline. An account that has never authenticated from a European IP address doing so at 3am is an anomaly. A service account that runs the same three queries every night suddenly executing a bulk export is an anomaly. A privileged user checking out credentials for a system they have never touched is an anomaly. None of these are automatically malicious. All of them are worth a second look. The value of anomaly detection is not generating alerts — it is generating the right alerts at the right time with enough context to act on.</p>
+
+    <p>Session analytics closes the loop on what privileged accounts actually do during the sessions they open. Keystroke logging, command analysis, and screen recording are not just audit trail features — they are the raw material for detection. A session that starts with normal administrative commands and then runs a discovery scan followed by a PowerShell download is a story you can read in real time if the analytics layer is watching it. Without session analytics, that story only becomes visible in a post-breach forensics exercise, which is the worst possible time to read it.</p>
+
+    <p>Identity Threat Detection and Response — ITDR — represents the maturation of these capabilities into a coordinated detection and response function. ITDR connects the identity layer to the SOC. It correlates privileged access events with threat intelligence, endpoint telemetry, and network activity to surface identity-based attacks as they are happening rather than after the fact. The identity team has always had the data to contribute to detection. ITDR is the operational framework that makes that contribution systematic.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">The Visibility Gap</p>
+    <h2 class="section-heading">Session recordings nobody watches until it's too late</h2>
+
+    <p>Here is the honest assessment of where most organizations actually are: they have a vault, they have session recording turned on, and nobody is watching the recordings unless something goes wrong.</p>
+
+    <p>Session recordings that are never reviewed until after a breach are a forensics capability, not a detection capability. The difference is not the data — it is the analytics layer that processes that data continuously and surfaces the events worth human attention before the breach becomes obvious.</p>
+
+    <p>This is the gap between PAM as a compliance control and PAM as a security control. Compliance requires that you have the audit trail. Security requires that someone — or something — is actually analyzing it.</p>
+
+    <p>The organizations that have closed this gap share a few common characteristics. They have defined what normal privileged activity looks like in their environment and documented it. They have configured alerting on deviations from that baseline rather than waiting for manual review. They have connected their PAM platform's analytics output to their SIEM or SOAR so privileged access events are part of the same detection workflow as everything else. And they treat privileged account anomalies with the same urgency as endpoint alerts — because in most breach scenarios, they are the same event observed from a different angle.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">What to Check This Week</p>
+    <h2 class="section-heading">Four questions that will tell you exactly where you stand</h2>
+
+    <ul class="checklist">
+      <li>Find out whether your PAM platform's analytics capabilities are enabled and configured, or just licensed and dormant. Most enterprise PAM platforms have behavioral analytics built in. Most organizations have not turned them on, have not defined their baselines, or have not connected the output to anyone who would act on it.</li>
+      <li>Pull a report of privileged session activity from the last thirty days and ask whether any human reviewed it outside of an investigation. If the answer is no, you have session recording as a forensics capability and nothing more.</li>
+      <li>Ask your SOC whether privileged access anomalies from your PAM platform appear in their alert queue. If PAM events are not visible to the people doing detection and response, your identity layer is operating in a separate silo from your security operations function. That is a gap attackers routinely exploit.</li>
+      <li>Identify the three privileged accounts in your environment with the broadest access. Ask whether there is any active monitoring on the behavior of those accounts specifically. The answer will tell you a great deal about where your analytics program actually stands.</li>
+    </ul>
+
+    <p>The vault is the foundation. Analytics is what makes it a security program. You cannot defend what you cannot see, and right now most organizations can see the credential sitting in the vault far more clearly than they can see what happens after it leaves.</p>
+
+  </div>
+
+  <footer>
+    <span class="footer-copy">&copy; 2026 The PAM Insider llc</span>
+    <div class="footer-links">
+      <a href="/articles">Articles &amp; Thoughts</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
