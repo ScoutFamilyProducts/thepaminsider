@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Fundamentals Don't Care About Your AI Strategy — The PAM Insider</title>
+  <meta name="description" content="AI agentic security is real and it matters. But the organizations that have not gotten the basics right are not ready to layer new identity types on top of a foundation that is already shaky." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050607; color: #F8FAFC; font-family: system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; color: #9DFF00; text-transform: uppercase; }
+    .nav-back { font-size: 0.78rem; color: #64748B; transition: color 0.2s; }
+    .nav-back:hover { color: #9DFF00; }
+
+    .article-wrap { max-width: 680px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; width: 100%; flex: 1; }
+
+    .article-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .article-cat {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #F5A623; border: 1px solid rgba(245,166,35,0.25); padding: 0.25rem 0.7rem; border-radius: 999px;
+    }
+    .article-date { font-size: 0.75rem; color: #334155; letter-spacing: 0.04em; }
+
+    .article-title {
+      font-size: 1.9rem; font-weight: 700; color: #F8FAFC;
+      line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 2.5rem;
+    }
+
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 2.5rem 0; }
+
+    p { font-size: 0.95rem; color: #94A3B8; line-height: 1.95; margin-bottom: 1.2rem; }
+
+    p.lead { font-size: 1.05rem; color: #CBD5E1; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .footer-copy { font-size: 0.7rem; color: #334155; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: #64748B; transition: color 0.2s; }
+    .footer-links a:hover { color: #9DFF00; }
+
+    @media (max-width: 600px) {
+      .article-title { font-size: 1.4rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-brand">The PAM Insider</a>
+    <a href="/articles" class="nav-back">&#8249; Articles &amp; Thoughts</a>
+  </nav>
+
+  <div class="article-wrap">
+
+    <div class="article-meta">
+      <span class="article-cat">TPI Thoughts</span>
+      <span class="article-date">July 1, 2026</span>
+    </div>
+
+    <h1 class="article-title">The Fundamentals Don't Care About Your AI Strategy</h1>
+
+    <p class="lead">There is a lot of energy right now around AI agentic security. Non-human identity. Machine credentials. Agentic attack surfaces. The attention is deserved. AI agents are real, they are in production environments right now, and the credential risk they introduce is genuinely underappreciated. It is a topic worth its own dedicated piece — and one we will get to on this site.</p>
+
+    <p>What I want to add to that conversation — not counter it, add to it — is a reminder that the fundamentals have to come first. Not instead of agentic security. Before it. Because the organizations that have not gotten the basics right are not ready to layer new identity types on top of a foundation that is already shaky.</p>
+
+    <hr class="divider" />
+
+    <p>I talk to security practitioners every week. The conversations I am having in 2026 are not primarily about AI agents. They are about the same things they have always been about.</p>
+
+    <p>Who has domain admin rights in your environment right now? Not who should have them. Who actually has them. Can you answer that question in under ten minutes?</p>
+
+    <p>When did your service account passwords last rotate? Do you know which service accounts exist? Do you know who owns them?</p>
+
+    <p>Are your privileged sessions being monitored? Not recorded — monitored. Is anyone or anything looking at that activity in real time, or does the recording only get reviewed after something goes wrong?</p>
+
+    <p>Do your administrators have local admin rights on their everyday workstations? Is EPM in place? Are they actually using the vault launcher, or are they copying credentials manually because it is faster?</p>
+
+    <p>These are not new questions. They are not exciting questions. They do not generate conference sessions or analyst reports. And in most organizations I encounter, they do not have clean answers.</p>
+
+    <hr class="divider" />
+
+    <p>PAM has always been about three things in this order: people, process, and controls.</p>
+
+    <p>People who understand what privileged access means, why it matters, and what their responsibilities are in protecting it. Process that defines how privileged access is granted, reviewed, revoked, and monitored — consistently, not just when an audit is coming. Controls that enforce the process and provide the visibility to know when something is going wrong.</p>
+
+    <p>The organizations that have those three things in order are genuinely better positioned to handle AI agents, agentic credentials, and whatever the next threat vector turns out to be. Because the same discipline that builds a solid PAM foundation — least privilege, credential management, behavioral monitoring, access reviews — applies directly to non-human identities. The framework does not change. The identity type sitting on top of it is new.</p>
+
+    <p>That is actually the encouraging part of the agentic conversation for practitioners who have done the foundational work. You are not starting over. You are extending a discipline you already have into a new class of identity. The vault, the access controls, the behavioral monitoring, the review cadence — those things all apply. The agent is just the newest account type that needs to be managed the same way you manage everything else.</p>
+
+    <p>For organizations that have not built that foundation yet, that is where to start. Not because agentic security is not important — it is — but because you cannot secure your AI agents if you cannot account for your service accounts. You cannot monitor agentic behavior if you have no baseline for human privileged behavior. You cannot apply least privilege to a machine identity if you have never enforced it on your administrators.</p>
+
+    <hr class="divider" />
+
+    <p>The fundamentals are not a phase you graduate from. They are the thing you maintain continuously while everything else around them changes. The threat landscape evolves. The identity types multiply. The attack surfaces expand. The fundamentals are what you come back to every time, because they are what holds everything else up.</p>
+
+    <p>Build the foundation. Train your people. Document your process. Enforce your controls. Then extend all of it to your agents.</p>
+
+    <p>The agents will still be there.</p>
+
+  </div>
+
+  <footer>
+    <span class="footer-copy">&copy; 2026 The PAM Insider llc</span>
+    <div class="footer-links">
+      <a href="/articles">Articles &amp; Thoughts</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
