@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Agents Are the Newest Privileged Identity. PAM Has to Catch Up. — The PAM Insider</title>
+  <meta name="description" content="AI agents are becoming standard in enterprise operations and most organizations are managing their credentials the same way they managed service account passwords a decade ago." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #050607; color: #F8FAFC; font-family: system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; color: #9DFF00; text-transform: uppercase; }
+    .nav-back { font-size: 0.78rem; color: #64748B; transition: color 0.2s; }
+    .nav-back:hover { color: #9DFF00; }
+
+    .article-wrap { max-width: 680px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; width: 100%; flex: 1; }
+
+    .article-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .article-cat {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #9DFF00; border: 1px solid rgba(157,255,0,0.25); padding: 0.25rem 0.7rem; border-radius: 999px;
+    }
+    .article-date { font-size: 0.75rem; color: #334155; letter-spacing: 0.04em; }
+
+    .article-title {
+      font-size: 1.9rem; font-weight: 700; color: #F8FAFC;
+      line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    }
+
+    .article-intro {
+      font-size: 1rem; color: #94A3B8; line-height: 1.85;
+      border-left: 2px solid rgba(157,255,0,0.3); padding-left: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 2.5rem 0; }
+
+    .section-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #9DFF00; opacity: 0.65; margin-bottom: 0.85rem;
+    }
+
+    .section-heading {
+      font-size: 1.15rem; font-weight: 700; color: #F8FAFC; margin-bottom: 1.1rem;
+    }
+
+    p { font-size: 0.9rem; color: #94A3B8; line-height: 1.9; margin-bottom: 1.1rem; }
+
+    .checklist { list-style: none; margin: 0.5rem 0 1.1rem; }
+    .checklist li {
+      font-size: 0.9rem; color: #94A3B8; line-height: 1.85;
+      padding-left: 1.25rem; position: relative; margin-bottom: 0.75rem;
+    }
+    .checklist li::before { content: '>'; position: absolute; left: 0; color: #9DFF00; opacity: 0.5; }
+
+    .disclosure {
+      font-size: 0.78rem; color: #334155; line-height: 1.8;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding-top: 1.5rem; margin-top: 2rem;
+      font-style: italic;
+    }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .footer-copy { font-size: 0.7rem; color: #334155; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: #64748B; transition: color 0.2s; }
+    .footer-links a:hover { color: #9DFF00; }
+
+    @media (max-width: 600px) {
+      .article-title { font-size: 1.4rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-brand">The PAM Insider</a>
+    <a href="/articles" class="nav-back">&#8249; Articles &amp; Thoughts</a>
+  </nav>
+
+  <div class="article-wrap">
+
+    <div class="article-meta">
+      <span class="article-cat">Technical Convos</span>
+      <span class="article-date">June 30, 2026</span>
+    </div>
+
+    <h1 class="article-title">AI Agents Are the Newest Privileged Identity. PAM Has to Catch Up.</h1>
+
+    <p class="article-intro">
+      AI agents are becoming standard in enterprise operations and most organizations are managing their credentials the same way they managed service account passwords a decade ago. Hardcoded. Embedded in configuration. Shared without oversight. Nobody really owns them.
+    </p>
+
+    <hr class="divider" />
+
+    <p>The perimeter of privileged access management has always expanded over time. It started with human administrators and domain admin accounts. It grew to include service accounts, shared credentials, and cloud IAM roles. It expanded again to cover DevOps pipelines, CI/CD secrets, and API keys embedded in application code.</p>
+
+    <p>The next expansion is already happening. AI agents — automated systems that connect to infrastructure, query databases, retrieve secrets, execute workflows, and take actions on behalf of users and applications — are becoming a standard part of enterprise operations. And most organizations are managing their credentials the same way they managed service account passwords a decade ago. Hardcoded. Embedded in configuration. Shared without oversight. Nobody really owns them.</p>
+
+    <p>This is not a future problem. It is a current one.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">Why It Matters</p>
+    <h2 class="section-heading">An agent with credentials is a privileged identity</h2>
+
+    <p>An AI agent that can read files, query a database, call an API, or execute commands is a privileged identity. It may not look like one in your identity governance tooling. It may not appear in your PAM vault. It may not be included in your access reviews. But from an access control perspective it is functionally equivalent to a service account with whatever permissions it has been granted — and in many cases those permissions were granted at deployment without much thought about what least privilege looks like for a machine that makes decisions autonomously.</p>
+
+    <p>The attack surface this creates is significant. An agent with hardcoded credentials is a credential waiting to be stolen from wherever it is stored — a configuration file, an environment variable, a prompt, a deployment script. An agent with standing access to sensitive systems is an always-on privileged session with no checkout, no time limit, no rotation, and no audit trail that connects its actions to a specific authorized request. An agent that can be manipulated through its inputs — prompt injection being the most discussed mechanism — can be turned into a privileged insider by an attacker who never touches the underlying infrastructure directly.</p>
+
+    <p>The credential is the target. For AI agents, the credential is often completely unmanaged.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">The PAM Lesson</p>
+    <h2 class="section-heading">The controls already exist — they need to be extended</h2>
+
+    <p>The good news is that the PAM discipline already has the answers. The same controls that apply to human privileged accounts apply to non-human ones. The challenge is extending those controls to an identity type that most PAM programs were not originally designed to handle.</p>
+
+    <p>The starting point is inventory. You cannot manage what you cannot see. Every AI agent that touches a privileged system needs to be identified, documented, and owned. The same way you would audit service accounts, you need to audit your agent population. Who deployed it, what it can access, what credential it uses, and who is accountable for it.</p>
+
+    <p>Least privilege applies directly. An agent that needs to read from one database should not have credentials that allow it to write to ten. An agent that needs to call one API endpoint should not have a token that grants access to the entire platform. Scoping agent permissions at deployment — rather than granting broad access because it is easier — is the same discipline that drives least privilege for human accounts.</p>
+
+    <p>Ephemeral credentials are the right architecture for agent authentication. Rather than issuing a long-lived API key or embedding a static credential in a configuration file, the agent should request a short-lived token scoped to the specific action it needs to perform. When the action is complete the token expires. There is nothing to steal from the configuration because there is nothing there. This is just-in-time access applied to machine identities.</p>
+
+    <p>Auditability closes the loop. Every action an agent takes using a privileged credential should be logged in a way that connects the action to the specific agent, the specific token, the specific request that authorized it, and the specific outcome. The audit trail for agentic access should be at least as complete as the audit trail for a human privileged session. Without it you have no forensics capability when something goes wrong.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">Where the Market Is Heading</p>
+    <h2 class="section-heading">PAM controls in the path of agentic requests</h2>
+
+    <p>PAM vendors are beginning to address this directly. The Model Context Protocol — MCP — is an emerging standard that defines how AI agents communicate with external tools and data sources. Several PAM vendors have released or are developing MCP server implementations that act as a controlled interface between AI agents and privileged systems, applying PAM controls to agentic requests rather than bypassing them.</p>
+
+    <p>The principle is sound: the agent requests access through the PAM layer, the PAM layer applies the same controls it would apply to a human session — authentication, authorization, time scoping, audit logging — and the agent receives a short-lived token rather than a standing credential. The vault stays in the chain. The agent never holds a persistent secret.</p>
+
+    <p>This is the right direction. Whether MCP becomes the dominant standard or something else emerges, the architectural principle — PAM controls in the path of agentic credential requests — is the one that matters. Agents should not be able to bypass the access control layer any more than human administrators should.</p>
+
+    <hr class="divider" />
+
+    <p class="section-label">What to Check This Week</p>
+    <h2 class="section-heading">Four places to start right now</h2>
+
+    <ul class="checklist">
+      <li>Inventory your AI agent population. Ask your development and operations teams how many AI agents or automated workflows are running in your environment that have access to privileged systems or sensitive data. If nobody has a complete answer, that is your finding.</li>
+      <li>Find out how those agents are authenticating. If the answer involves static API keys, hardcoded credentials, or environment variables that have not rotated since deployment, you have unmanaged privileged identities in your environment right now.</li>
+      <li>Ask whether your PAM platform has guidance or capability for securing agentic credentials. Most enterprise platforms are actively developing this. Understanding what your existing tooling supports is the right starting point before evaluating new solutions.</li>
+      <li>Apply the service account mental model. Every AI agent that touches a privileged system should be treated like a service account — owned, documented, scoped to least privilege, authenticated with credentials that rotate, and audited for its activity. That framework gets you significantly further than treating agents as something outside the PAM perimeter.</li>
+    </ul>
+
+    <p>The perimeter of privileged access management has expanded before. It will keep expanding. AI agents are the current edge of that expansion — and the organizations that extend their PAM discipline to cover them now are the ones that will not be explaining an agentic breach in a post-incident report two years from now.</p>
+
+    <p class="disclosure">Disclosure: The author works for Delinea, a PAM vendor that has released an open-source MCP Server implementation. This article does not evaluate or endorse any specific vendor solution.</p>
+
+  </div>
+
+  <footer>
+    <span class="footer-copy">&copy; 2026 The PAM Insider llc</span>
+    <div class="footer-links">
+      <a href="/articles">Articles &amp; Thoughts</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
