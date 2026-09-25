@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Runtime Privilege Protection Is Not One Thing — The PAM Insider</title>
+<meta name="description" content="Not all runtime privilege protection evaluates the same way. The difference between trusting a parent process versus evaluating every individual execution is a security architecture decision with real consequences.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #3D1A6E;
+    --green: #39FF14;
+    --black: #0D0D0D;
+    --white: #FFFFFF;
+    --grey: #888888;
+    --amber: #F5A623;
+    --green-dim: rgba(57,255,20,0.08);
+    --green-glow: rgba(57,255,20,0.4);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 998;
+  }
+
+  .corner-tl, .corner-br {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .corner-tl {
+    top: 16px; left: 16px;
+    border-top: 1px solid rgba(57,255,20,0.3);
+    border-left: 1px solid rgba(57,255,20,0.3);
+  }
+  .corner-br {
+    bottom: 16px; right: 16px;
+    border-bottom: 1px solid rgba(57,255,20,0.3);
+    border-right: 1px solid rgba(57,255,20,0.3);
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 10;
+  }
+
+  header {
+    padding: 32px 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tpi-logo {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .tpi-logo:hover { color: var(--green); }
+
+  .back-link {
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--green); }
+
+  .article-meta {
+    margin-bottom: 40px;
+  }
+
+  .category-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--black);
+    background: var(--green);
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-bottom: 16px;
+  }
+
+  .article-date {
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+  }
+
+  .article-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(26px, 6vw, 40px);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 0.5px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+    margin: 32px 0;
+    opacity: 0.4;
+  }
+
+  .intro-block {
+    border-left: 2px solid var(--green);
+    padding: 16px 24px;
+    margin-bottom: 40px;
+    background: var(--green-dim);
+  }
+  .intro-block p {
+    font-size: 14px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid rgba(57,255,20,0.2);
+  }
+
+  .section p {
+    font-size: 13px;
+    line-height: 2;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 14px;
+  }
+
+  .section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .scenario-block {
+    border: 0.5px solid rgba(245,166,35,0.4);
+    padding: 20px 24px;
+    margin: 24px 0;
+    position: relative;
+    background: rgba(245,166,35,0.04);
+  }
+  .scenario-block::before {
+    content: 'ATTACK SCENARIO';
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    background: var(--black);
+    padding: 0 8px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--amber);
+  }
+  .scenario-block p {
+    font-size: 13px;
+    line-height: 2;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 10px;
+  }
+  .scenario-block p:last-child { margin-bottom: 0; }
+
+  .checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .checklist li {
+    font-size: 13px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.75);
+    padding-left: 24px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+  .checklist li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .disclosure-block {
+    border: 0.5px solid rgba(255,255,255,0.1);
+    padding: 20px 24px;
+    margin-top: 48px;
+    background: rgba(255,255,255,0.02);
+  }
+  .disclosure-block p {
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--grey);
+    letter-spacing: 0.05em;
+  }
+  .disclosure-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--grey);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.6;
+  }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-left {
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.15em;
+  }
+
+  .footer-right {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-link {
+    font-size: 11px;
+    color: var(--grey);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--green); }
+
+  @media (max-width: 480px) {
+    footer { flex-direction: column; text-align: center; }
+    .footer-right { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="corner-tl"></div>
+<div class="corner-br"></div>
+
+<div class="container">
+
+  <header>
+    <a href="https://thepaminsider.com" class="tpi-logo">The PAM Insider</a>
+    <a href="https://thepaminsider.com/articles" class="back-link">‹ Articles & Thoughts</a>
+  </header>
+
+  <div class="article-meta">
+    <div class="category-tag">Technical Convos</div>
+    <p class="article-date">September 25, 2026</p>
+    <h1 class="article-title">Runtime Privilege Protection Is Not One Thing. Start Treating It Like It Isn't.</h1>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="intro-block">
+    <p>Not all runtime privilege protection evaluates the same way. The difference between trusting a parent process versus evaluating every individual execution is a security architecture decision with real consequences — and most practitioners never ask which model their tool uses.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">The PAM Lesson</h2>
+    <p>Traditional PAM is essential, but it is incomplete by design. It controls what credentials get accessed and by whom. Runtime privilege protection is a different layer — it governs what gets to execute, at what privilege level, and under what conditions. These are not the same problem.</p>
+
+    <p>Within runtime protection, two distinct evaluation models exist. The first evaluates the initial execution — the parent process — and cascades that determination to all child processes through a policy ticket. The parent is trusted; everything spawned from it inherits that trust. The second model evaluates each command or execution independently, regardless of what launched it.</p>
+
+    <p>The architectural difference sounds subtle. The security difference is not.</p>
+
+    <div class="scenario-block">
+      <p>A legitimate, trusted parent process is compromised mid-session. The attacker uses it to spawn a child process — a shell, a script, a payload. Under the first model, that child inherits the parent's determination. The trust chain holds. The execution proceeds at elevated privilege.</p>
+      <p>Under the second model, the child process is evaluated independently. It has no earned trust. The chain breaks exactly where the compromise occurred.</p>
+    </div>
+
+    <p>This is not a theoretical edge case. It is a practical architectural question that determines whether your runtime controls hold when a real attacker finds a foothold. Hundreds or thousands of process executions happen faster than you can read this article. The evaluation model your endpoint privilege management tool uses determines whether each one of those is trusted on its own merits or inherited from whatever came before it.</p>
+
+    <p>Ask the question. Know the answer before an incident makes the answer obvious.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">What to Check This Week</h2>
+    <ul class="checklist">
+      <li>Ask your EPM vendor specifically how child process privilege determination works. Does the child inherit the parent's evaluation, or is it evaluated independently? If the vendor cannot answer this directly, that is itself an answer worth documenting.</li>
+      <li>Pull telemetry on process spawning depth in your environment. Identify which parent processes are generating the deepest chains and whether any of those parents carry elevated privilege. That is where inherited-trust exposure concentrates.</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="disclosure-block">
+    <p class="disclosure-label">Disclosure</p>
+    <p>The author works for Delinea, a PAM vendor with endpoint privilege management capabilities. This article does not evaluate or endorse any specific vendor solution.</p>
+  </div>
+
+  <footer>
+    <div class="footer-left">© 2026 The PAM Insider llc</div>
+    <div class="footer-right">
+      <a href="https://thepaminsider.com/articles" class="footer-link">Articles</a>
+      <a href="https://thepaminsider.com/privacy" class="footer-link">Privacy</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
